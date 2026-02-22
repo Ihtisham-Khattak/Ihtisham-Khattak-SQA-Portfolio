@@ -66,7 +66,7 @@ export const portfolioData = {
         solution:
           "Designed and implemented a modular Cypress framework with custom commands and reporting.",
         outcome:
-          "educed regression time to 4 hours and increased test coverage by 60%.",
+          "Reduced regression time to 4 hours and increased test coverage by 60%.",
       },
       link: "#",
     },

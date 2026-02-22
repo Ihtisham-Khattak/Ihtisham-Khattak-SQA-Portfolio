@@ -1,0 +1,108 @@
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: var(--header-height);
+  overflow: hidden; /* Ensure shape doesn't overflow */
+}
+
+.hero-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: relative; /* Context for absolute shape */
+}
+
+.hero-shape {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.6;
+}
+
+.shape-1 {
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  right: -100px;
+  background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+  /* Remove border radius hacking for now, just soft blobs */
+  border-radius: 50%; 
+  opacity: 0.8;
+}
+
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  bottom: 0px;
+  left: -100px;
+  background: linear-gradient(135deg, #f3e8ff 0%, #fae8ff 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.shape-3 {
+  width: 200px;
+  height: 200px;
+  top: 20%;
+  left: 15%;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  opacity: 0.7;
+  border: none; /* Removed border style */
+}
+
+/* Removed dark mode overrides for shapes as we are enforcing light/white theme */
+
+.hero-content {
+  max-width: 800px;
+  z-index: 1; /* Ensure content is above shape */
+}
+
+.hero-headline {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #1e293b 0%, #2563eb 50%, #3b82f6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero-subheadline {
+  font-size: 1.25rem;
+  color: var(--secondary-text);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--secondary-text);
+}
+
+@media (max-width: 768px) {
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+  .hero-subheadline {
+    font-size: 1.1rem;
+  }
+  .hero-bg-shape {
+    width: 90%;
+    height: 300px;
+  }
+}

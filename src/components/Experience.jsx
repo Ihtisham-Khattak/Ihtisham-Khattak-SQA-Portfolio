@@ -8,11 +8,13 @@ const Experience = ({ data }) => {
       <div className="container">
         <h2 className="section-title">Experience</h2>
         <div className="timeline">
-          {data.map((job, index) => (
+          {data.map((job, index) => {
+            const isRight = index % 2 === 0;
+            return (
             <motion.div
               key={index}
-              className="timeline-item"
-              initial={{ opacity: 0, x: -50 }}
+              className={`timeline-item ${isRight ? "right" : "left"}`}
+              initial={{ opacity: 0, x: isRight ? 50 : -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.5 }}
@@ -33,7 +35,8 @@ const Experience = ({ data }) => {
                 </ul>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -52,6 +52,17 @@ export const portfolioData = {
         "Performed regression, smoke, and sanity testing for each release cycle, ensuring stable deployments",
       ],
     },
+    {
+      role: "Project Manager",
+      company: "Metodo Vicon",
+      duration: "December 2020 – January 2022",
+      responsibilities: [
+        "Leading functional, regression, exploratory, and UAT testing for 15+ platform features and enhancements per quarter.",
+        "Collaborating directly with clients for requirement gathering, project discussions, sprint planning, and delivery alignment.",
+        "Coordinating with cross-functional teams to ensure smooth execution, timely delivery, and high-quality releases.",
+        "Managing Jira workflows including user stories, bugs, tasks, and sprint tracking for 25+ cards per sprint.",
+      ],
+    },
   ],
   projects: [
     {

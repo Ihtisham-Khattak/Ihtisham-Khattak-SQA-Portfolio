@@ -1,5 +1,5 @@
-import "./Footer.css";
 import { Github, Linkedin, Mail } from "lucide-react";
+import "./Footer.css";
 
 const Footer = ({ personal }) => {
   return (
@@ -9,7 +9,7 @@ const Footer = ({ personal }) => {
           <h3 className="footer-name">{personal.name}</h3>
           <p className="footer-title">{personal.title}</p>
           <div className="footer-copyright">
-            © {new Date().getFullYear()} All rights reserved.
+            © {new Date().getFullYear()} {personal.name}. All rights reserved.
           </div>
         </div>
 
@@ -18,21 +18,21 @@ const Footer = ({ personal }) => {
             <a
               href={personal.social.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="GitHub"
             >
-              <Github size={20} />
+              <Github size={20} aria-hidden="true" />
             </a>
             <a
               href={personal.social.linkedin}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
-              <Linkedin size={20} />
+              <Linkedin size={20} aria-hidden="true" />
             </a>
             <a href={`mailto:${personal.email}`} aria-label="Email">
-              <Mail size={20} />
+              <Mail size={20} aria-hidden="true" />
             </a>
           </div>
         </div>

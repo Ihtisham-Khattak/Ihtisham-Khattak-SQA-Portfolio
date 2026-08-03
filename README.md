@@ -1,16 +1,65 @@
-# React + Vite
+# Ihtisham Khattak — SQA Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hiring-manager-ready SPA for SQA experience, automation case studies, tool stack, work samples, and contact.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + Vite 7
+- Framer Motion (reduced-motion aware)
+- Lucide React
+- Vanilla CSS with design tokens and dark mode (`data-theme`)
 
-## React Compiler
+## Getting started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Scripts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Local development server |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | ESLint |
+
+## Content edits
+
+All copy lives in [`src/data/portfolioData.js`](src/data/portfolioData.js):
+
+- `hero`, `metrics`, `services`
+- `skills` (tool groups)
+- `experience` (reverse-chronological)
+- `projects` (case studies)
+- `workSamples`
+- `testimonials`, `personal`
+
+### Adding documentation samples
+
+1. Place sanitized PDFs or Markdown in [`public/samples/`](public/samples/).
+2. Update the matching `workSamples` entry with `link: "/samples/your-file.pdf"` and remove `comingSoon: true`.
+
+Resume PDF: [`src/assets/Ihtisham_Khattak_SQA.pdf`](src/assets/Ihtisham_Khattak_SQA.pdf).
+
+## Page flow
+
+Hero (+ metrics) → How I Help → Tool Stack → Experience → Case Studies → Work Samples → Testimonials → Contact
+
+## Docker
+
+```bash
+docker compose up --build
+```
+
+App is served at `http://localhost:8080`.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for structure and design notes.
+
+## Accessibility
+
+- Skip-to-content link
+- Dark/light theme with system preference + persistence
+- `prefers-reduced-motion` support
+- Labeled controls and carousel pause on focus/hover

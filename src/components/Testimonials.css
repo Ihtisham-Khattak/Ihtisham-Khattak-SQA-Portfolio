@@ -1,12 +1,12 @@
 .testimonials-section {
-  background-color: var(--card-bg);
+  position: relative;
 }
 
 .carousel-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 800px;
+  max-width: 860px;
   margin: 0 auto;
   position: relative;
   gap: 1rem;
@@ -15,53 +15,59 @@
 .testimonial-wrapper {
   overflow: hidden;
   width: 100%;
+  min-width: 0;
 }
 
 .testimonial-card.carousel-card {
-  background-color: var(--bg-color);
-  padding: 3rem;
-  border-radius: 8px;
+  background: var(--bg-elevated);
+  padding: clamp(2rem, 4vw, 3.25rem);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  min-height: 350px; /* Prevent height jump */
+  align-items: flex-start;
+  text-align: left;
+  min-height: 300px;
   justify-content: center;
+  margin: 0;
+  box-shadow: var(--shadow-card);
 }
 
 .quote-icon {
   color: var(--accent-color);
-  opacity: 0.3;
-  margin-bottom: 1.5rem;
+  opacity: 0.55;
+  margin-bottom: 1.25rem;
 }
 
 .testimonial-text {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  font-style: italic;
-  margin-bottom: 2rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+  line-height: 1.45;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.75rem;
   color: var(--text-color);
 }
 
 .author-name {
   font-weight: 700;
   color: var(--text-color);
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .author-role {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--secondary-text);
 }
 
 .carousel-btn {
-  background-color: var(--bg-color);
+  background-color: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,41 +77,59 @@
 }
 
 .carousel-btn:hover {
+  background-color: var(--ink);
+  color: var(--bg-color);
+  border-color: var(--ink);
+}
+
+[data-theme="dark"] .carousel-btn:hover {
   background-color: var(--accent-color);
-  color: white;
+  color: #0a0a0a;
   border-color: var(--accent-color);
+}
+
+.carousel-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
 .carousel-dots {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
   background-color: var(--border-color);
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, width 0.25s, transform 0.2s;
 }
 
 .dot.active {
   background-color: var(--accent-color);
+  width: 22px;
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
 @media (max-width: 600px) {
   .carousel-container {
-    flex-direction: column;
-    gap: 0;
+    gap: 0.5rem;
   }
-  
+
   .carousel-btn {
-    display: none; /* Rely on swipe or dots for mobile simple */
+    width: 38px;
+    height: 38px;
   }
 
   .testimonial-card.carousel-card {
-     padding: 2rem 1.5rem;
+    padding: 1.5rem 1.25rem;
+    min-height: 260px;
   }
 }

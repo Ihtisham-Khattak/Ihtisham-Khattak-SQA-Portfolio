@@ -1,0 +1,117 @@
+.samples-section {
+  background: color-mix(in srgb, var(--surface-alt) 55%, transparent);
+}
+
+.samples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 1rem;
+}
+
+.sample-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  transition: transform 0.3s ease, border-color 0.25s ease, box-shadow 0.3s ease;
+}
+
+.sample-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent-color) 35%, var(--border-color));
+  box-shadow: var(--shadow-card);
+}
+
+.sample-card.is-soon {
+  opacity: 0.8;
+}
+
+.sample-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent-color);
+}
+
+.sample-body {
+  min-width: 0;
+}
+
+.sample-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.sample-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-color);
+}
+
+.sample-soon {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  color: var(--secondary-text);
+}
+
+.sample-body h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.sample-body p {
+  color: var(--secondary-text);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+.sample-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: var(--accent-color);
+}
+
+.sample-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sample-link:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sample-link.disabled {
+  color: var(--secondary-text);
+  font-weight: 500;
+  font-family: var(--font-main);
+  cursor: default;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sample-card:hover {
+    transform: none;
+  }
+}

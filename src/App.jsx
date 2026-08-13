@@ -2,12 +2,10 @@ import { portfolioData } from "./data/portfolioData";
 import { useTheme } from "./hooks/useTheme";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Services from "./components/Services";
-import Skills from "./components/Skills";
-import Experience from "./components/Experience";
 import Projects from "./components/Projects";
-import WorkSamples from "./components/WorkSamples";
-import Testimonials from "./components/Testimonials";
+import Expertise from "./components/Expertise";
+import Experience from "./components/Experience";
+import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -26,12 +24,17 @@ function App() {
           personal={portfolioData.personal}
           metrics={portfolioData.metrics}
         />
-        <Services data={portfolioData.services} />
-        <Skills data={portfolioData.skills} />
-        <Experience data={portfolioData.experience} />
         <Projects data={portfolioData.projects} />
-        <WorkSamples data={portfolioData.workSamples} />
-        <Testimonials data={portfolioData.testimonials} />
+        <Expertise
+          data={portfolioData.expertise}
+          tools={portfolioData.tools}
+          projects={portfolioData.projects}
+        />
+        <Experience data={portfolioData.experience} />
+        <About
+          data={portfolioData.about}
+          quotes={portfolioData.testimonials}
+        />
         <Contact contactInfo={portfolioData.personal} />
       </main>
       <Footer personal={portfolioData.personal} />

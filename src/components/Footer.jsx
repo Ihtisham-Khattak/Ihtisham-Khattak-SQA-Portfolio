@@ -1,41 +1,30 @@
-import { Github, Linkedin, Mail } from "lucide-react";
 import "./Footer.css";
+
+const links = [
+  { name: "Work", href: "#work" },
+  { name: "Expertise", href: "#expertise" },
+  { name: "Experience", href: "#experience" },
+  { name: "About", href: "#about" },
+  { name: "Contact", href: "#contact" },
+];
 
 const Footer = ({ personal }) => {
   return (
     <footer className="footer">
       <div className="container footer-content">
-        <div className="footer-left">
-          <h3 className="footer-name">{personal.name}</h3>
-          <p className="footer-title">{personal.title}</p>
-          <div className="footer-copyright">
-            © {new Date().getFullYear()} {personal.name}. All rights reserved.
-          </div>
-        </div>
-
-        <div className="footer-right">
-          <div className="social-links">
-            <a
-              href={personal.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <Github size={20} aria-hidden="true" />
+        <p>
+          {personal.name}
+          <span aria-hidden="true"> / </span>
+          {personal.title}
+        </p>
+        <nav className="footer-nav" aria-label="Footer">
+          {links.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.name}
             </a>
-            <a
-              href={personal.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} aria-hidden="true" />
-            </a>
-            <a href={`mailto:${personal.email}`} aria-label="Email">
-              <Mail size={20} aria-hidden="true" />
-            </a>
-          </div>
-        </div>
+          ))}
+        </nav>
+        <p>© {new Date().getFullYear()}</p>
       </div>
     </footer>
   );

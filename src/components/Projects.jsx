@@ -5,7 +5,7 @@ import SectionIntro from "./SectionIntro";
 import WorkDiagram from "./WorkDiagram";
 import "./Projects.css";
 
-const layouts = ["split", "reverse", "stacked"];
+const layouts = ["split", "reverse", "split"];
 
 function WorkCase({ project, index, reducedMotion }) {
   const layout = layouts[index % layouts.length];

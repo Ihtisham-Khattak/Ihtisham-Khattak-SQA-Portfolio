@@ -8,7 +8,7 @@ const links = [
   { name: "Contact", href: "#contact" },
 ];
 
-const Footer = ({ personal }) => {
+const Footer = ({ personal, isNotFound = false }) => {
   return (
     <footer className="footer">
       <div className="container footer-content">
@@ -19,7 +19,7 @@ const Footer = ({ personal }) => {
         </p>
         <nav className="footer-nav" aria-label="Footer">
           {links.map((link) => (
-            <a key={link.href} href={link.href}>
+            <a key={link.href} href={isNotFound ? `/${link.href}` : link.href}>
               {link.name}
             </a>
           ))}

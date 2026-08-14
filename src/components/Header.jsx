@@ -12,7 +12,11 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 
-const Header = ({ theme, onToggleTheme }) => {
+const Header = ({ theme, onToggleTheme, isNotFound = false }) => {
+  const links = navLinks.map((link) => ({
+    ...link,
+    href: isNotFound ? `/${link.href}` : link.href,
+  }));
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("");
@@ -32,7 +36,7 @@ const Header = ({ theme, onToggleTheme }) => {
 
   useEffect(() => {
     const sections = navLinks
-      .map((link) => document.getElementById(link.href.slice(1)))
+      .map((link) => document.getElementById(link.href.replace("#", "")))
       .filter(Boolean);
     if (!sections.length) return undefined;
 
@@ -99,7 +103,7 @@ const Header = ({ theme, onToggleTheme }) => {
         aria-hidden="true"
       />
       <div className="container header-content">
-        <a href="#top" className="logo" onClick={closeMenu}>
+        <a href={isNotFound ? "/" : "#top"} className="logo" onClick={closeMenu}>
           <span className="logo-mark" aria-hidden="true">
             IK
           </span>
@@ -107,7 +111,7 @@ const Header = ({ theme, onToggleTheme }) => {
         </a>
 
         <nav className="nav-desktop" aria-label="Primary">
-          {navLinks.map((link) => (
+          {links.map((link) => (
             <a
               key={link.name}
               href={link.href}
@@ -175,7 +179,7 @@ const Header = ({ theme, onToggleTheme }) => {
             animate={{ opacity: 1 }}
             exit={reducedMotion ? undefined : { opacity: 0 }}
           >
-            {navLinks.map((link, index) => (
+            {links.map((link, index) => (
               <motion.a
                 key={link.name}
                 href={link.href}

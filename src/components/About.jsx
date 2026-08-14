@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { usePrefersReducedMotion, inViewFade } from "../hooks/usePrefersReducedMotion";
+import QuoteCarousel from "./QuoteCarousel";
 import "./About.css";
 
 const About = ({ data, quotes }) => {
@@ -19,22 +20,7 @@ const About = ({ data, quotes }) => {
           <p className="about-body">{data.body}</p>
         </motion.div>
 
-        {quotes?.length > 0 && (
-          <div className="about-quotes">
-            {quotes.map((item, index) => (
-              <motion.blockquote
-                key={item.name}
-                {...inViewFade(reducedMotion, 0.08 + index * 0.06)}
-              >
-                <p>{item.feedback}</p>
-                <footer>
-                  <cite>{item.name}</cite>
-                  <span>{item.role}</span>
-                </footer>
-              </motion.blockquote>
-            ))}
-          </div>
-        )}
+        {quotes?.length > 0 && <QuoteCarousel quotes={quotes} />}
       </div>
     </section>
   );

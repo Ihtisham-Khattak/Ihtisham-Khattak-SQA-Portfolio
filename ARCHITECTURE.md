@@ -2,14 +2,17 @@
 
 ## Overview
 
-Client-only SPA (no backend). Navigation uses hash anchors (`#services`, `#skills`, `#experience`, `#projects`, `#samples`, `#contact`).
+Client-only SPA (no backend). Navigation uses hash anchors (`#about`, `#skills`, `#experience`,
+`#ai-testing`, `#contact`; `#process` and `#credentials` are scroll-only sections).
+Unknown paths render the in-app 404 (`NotFound`), and the build copies `index.html` to `404.html`.
 
 ```
 Browser
   └── Vite SPA (React)
-        ├── Header (nav + theme toggle)
-        ├── Hero + metrics
-        ├── Services → Skills → Experience → Projects → WorkSamples → Testimonials → Contact
+        ├── Navbar (nav, theme toggle, resume, mobile overlay)
+        ├── Hero (+ TestRunner illustration) → Stats
+        ├── About → Skills → Experience → AITesting → Process → Credentials → Contact
+        ├── Footer
         └── portfolioData.js (content source of truth)
 ```
 
@@ -17,47 +20,36 @@ Browser
 
 ```
 src/
-  assets/           Resume PDF, optimized portrait (webp/jpg)
-  components/       Section components + co-located CSS
+  assets/           Resume PDF, portrait images (currently unused)
+  components/       One component per section, with co-located CSS
+    Illustrations   Inline-SVG: MagnifierBug, PipelineDiagram, ChatProbe
+    TestRunner      Hero terminal illustration (typewriter + coverage ring)
+    Reveal          Scroll reveal (CSS animation + one shared IntersectionObserver)
+    SkillIcon       Renders an icon by key; registry lives in skillIcons.js
   data/             portfolioData.js
-  hooks/            useTheme, reduced-motion helpers
-  index.css         Global tokens, typography, buttons, a11y
-  App.jsx           Composition root
-  main.jsx          React entry
-public/
-  favicon.svg
-  samples/          Optional QA docs (test plans, bug reports)
-Dockerfile          Multi-stage Node build + nginx runtime
-nginx.conf          Static hosting, caching, security headers
+  hooks/            useTheme, usePrefersReducedMotion
+  index.css         Tokens, typography, buttons, cards, chips, utilities
+public/             favicon.svg (IK monogram), robots.txt, samples/
 ```
-
-## Content model (`portfolioData.js`)
-
-| Key | Purpose |
-|-----|---------|
-| `personal` | Name, title, email, social |
-| `hero` | Role, headline, subheadline, focus chips |
-| `metrics` | Impact strip under hero |
-| `services` | How I Help cards |
-| `skills` | Tool stack groups |
-| `experience` | Reverse-chronological roles |
-| `projects` | Case studies (problem/solution/outcome, impact, repo) |
-| `workSamples` | Links to GitHub / docs |
-| `testimonials` | Social proof |
 
 ## Design system
 
-CSS custom properties on `:root` / `[data-theme="dark"]` for colors, typography, spacing, and container width.
+- Tokens in `src/index.css`: `--bg*`, `--text*`, `--border*`, `--accent*`, `--danger*`, radii, spacing.
+  Components reference tokens only; no hard-coded colors (brand-hover colors live in `skillIcons.js`).
+- Radii: cards 16px, buttons 10px, chips 999px. Container max 1200px.
+- Section spacing is `--section-space`, split half above / half below so neighbouring sections add up to one.
 
 ## Motion
 
-Framer Motion for header, hero, section fades, carousel, and mobile nav. Disabled or simplified under `prefers-reduced-motion`.
+Scroll reveals are CSS keyframes (`Reveal.css`) triggered by a single IntersectionObserver.
+Framer Motion handles the mobile menu, copy toast, magnetic buttons and the 404 trace.
+All of it is disabled or simplified under `prefers-reduced-motion`.
 
 ## Theming
 
-1. Inline script in `index.html` sets `data-theme` before paint.
-2. `useTheme` syncs React state, `localStorage`, and the document attribute.
-3. Header sun/moon toggle.
+1. Inline script in `index.html` sets `data-theme` before paint: stored choice, else system preference, else dark.
+2. `useTheme` syncs React state and `localStorage` (failures are swallowed).
+3. Sun/moon toggle in the navbar.
 
 ## Deployment
 
@@ -66,4 +58,4 @@ Framer Motion for header, hero, section fades, carousel, and mobile nav. Disable
 
 ## Out of scope
 
-No JWT, rate limiting, server-side forms, or multi-module backend. Contact is mailto / social links only.
+No JWT, rate limiting, server-side forms, or backend. Contact is mailto / tel / social links plus copy-to-clipboard.

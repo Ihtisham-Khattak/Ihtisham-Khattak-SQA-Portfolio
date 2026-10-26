@@ -1,0 +1,57 @@
+.process-diagram {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.process-diagram:hover {
+  transform: none;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem 2rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.step {
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border-strong);
+  transition: border-color 0.3s var(--ease-out);
+}
+
+.step:hover {
+  border-top-color: var(--accent);
+}
+
+.step-id {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.step h3 {
+  margin-bottom: 0.4rem;
+}
+
+.step p {
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 28ch;
+}
+
+@media (min-width: 640px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

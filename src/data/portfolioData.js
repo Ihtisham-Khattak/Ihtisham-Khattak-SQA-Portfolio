@@ -1,195 +1,257 @@
+// Single source of truth for all site content.
+// Skill `icon` values are keys into src/components/skillIcons.jsx.
+
 export const portfolioData = {
   personal: {
     name: "Ihtisham Khattak",
-    title: "Software Quality Engineer",
-    tagline: "Fewer production escapes. Faster safe releases.",
+    title: "Senior QA Engineer",
+    location: "Islamabad, Pakistan",
+    phone: "+92-331-9038578",
     email: "ihtishamkhattak9504@gmail.com",
     social: {
       linkedin: "https://www.linkedin.com/in/ihtisham-khattak-6661641a5/",
       github: "https://github.com/Ihtisham-Khattak",
     },
   },
+
   hero: {
-    eyebrow: "Software Quality Engineer",
-    headline: "Fewer production escapes.\nFaster safe releases.",
-    subheadline:
-      "Cypress and Playwright automation, API and performance checks, and CI gates that cut regression risk without slowing delivery.",
+    status: "Available for opportunities",
+    name: "Ihtisham Khattak",
+    subheadline: [
+      "Senior QA Engineer crafting ",
+      { strong: "reliable software" },
+      " through test automation, API testing, and ",
+      { strong: "AI/LLM quality assurance" },
+      ".",
+    ],
+    experience: "3+ years experience",
   },
+
+  stats: [
+    { value: "3+", label: "Years in QA" },
+    { value: "95%+", label: "Test coverage achieved" },
+    { value: "60%", label: "Less manual testing effort" },
+    { value: "2", label: "Companies · multiple client projects" },
+  ],
+
   about: {
-    lead: "Quality is engineered into the release.",
-    body: "I work the highest-risk paths: critical flows, APIs under load, and pipelines that need a trustworthy signal before production. Automation only ships if it is fast, maintainable, and believed.",
+    title: "I find the bugs before your users do.",
+    body:
+      "Results-driven QA Engineer with 3+ years of experience in manual and automation testing across Agile/Scrum teams. I design comprehensive test strategies, build automation that scales, and catch defects early — so teams can ship with confidence. Lately, I've been focused on AI chatbot and LLM testing: hallucination detection, context-retention validation, prompt engineering, and AI-assisted test generation.",
+    values: [
+      {
+        icon: "target",
+        title: "Test Strategy",
+        text: "Plans that map risk to coverage before a line of test code is written.",
+      },
+      {
+        icon: "workflow",
+        title: "Automation First",
+        text: "Suites that run on every commit and that the team actually trusts.",
+      },
+      {
+        icon: "brain",
+        title: "AI Quality",
+        text: "Validating chatbots and LLMs for grounding, memory and edge cases.",
+      },
+    ],
   },
-  expertise: [
-    {
-      id: "01",
-      title: "Test strategy",
-      value: "Plans that map requirements to risk — what to test, why, and when to ship.",
-      solves: "Decide what is worth testing before a suite or a sprint starts.",
-      tools: ["Test plans", "Risk", "UAT"],
-      methods: ["Risk mapping", "Coverage planning", "Acceptance criteria"],
-      related: ["automation-testing-framework", "cypress-ecommerce-suite"],
-    },
-    {
-      id: "02",
-      title: "E2E automation",
-      value: "Maintainable Cypress and Playwright suites. Regression in hours, not days.",
-      solves: "Replace multi-day manual regression with suites the team actually runs.",
-      tools: ["Cypress", "Playwright", "POM"],
-      methods: ["Page Object Model", "Critical-path coverage", "CI execution"],
-      related: ["automation-testing-framework", "cypress-ecommerce-suite"],
-    },
-    {
-      id: "03",
-      title: "API & performance",
-      value: "Contracts first. Then k6 smoke, load, and thresholds that fail the build.",
-      solves: "Catch contract breaks and latency before production traffic does.",
-      tools: ["Postman", "k6", "REST"],
-      methods: ["Contract checks", "Smoke / load / stress", "Pass-fail thresholds"],
-      related: ["k6-api-testing"],
-    },
-    {
-      id: "04",
-      title: "CI quality gates",
-      value: "The same bar on every commit. Releases wait on evidence.",
-      solves: "Stop releases that fail the suite instead of hoping someone notices.",
-      tools: ["GitHub Actions", "Jenkins", "Docker"],
-      methods: ["Pipeline gates", "Same checks locally and in CI", "Release evidence"],
-      related: ["automation-testing-framework", "k6-api-testing"],
-    },
-  ],
-  tools: [
-    "Cypress",
-    "Playwright",
-    "k6",
-    "Postman",
-    "GitHub Actions",
-    "Jenkins",
-    "Docker",
-    "Jira",
-    "REST",
-  ],
-  metrics: [
-    { value: "60%", label: "Less manual regression time" },
-    { value: "3+", label: "Years in SQA and delivery" },
-    { value: "95%+", label: "Planned coverage on web apps" },
-    { value: "15+", label: "Features / quarter in UAT" },
-  ],
+
+  skills: {
+    title: "Toolkit & expertise",
+    groups: [
+      {
+        id: "testing-ai",
+        title: "Testing & AI",
+        size: "wide",
+        items: [
+          { label: "Manual Testing", icon: "manual" },
+          { label: "Automation Testing", icon: "automation" },
+          { label: "AI Chatbot Testing", icon: "chatbot" },
+          { label: "LLM Testing", icon: "llm" },
+          { label: "Hallucination Testing", icon: "hallucination" },
+          { label: "Context Retention Testing", icon: "context" },
+          { label: "Prompt Engineering", icon: "prompt" },
+          { label: "AI-Assisted Test Generation", icon: "aigen" },
+          { label: "Regression Testing", icon: "regression" },
+          { label: "Integration Testing", icon: "integration" },
+          { label: "Exploratory Testing", icon: "exploratory" },
+          { label: "Performance Testing", icon: "performance" },
+        ],
+      },
+      {
+        id: "automation-api",
+        title: "Test Automation & API",
+        items: [
+          { label: "Playwright", icon: "playwright" },
+          { label: "Cypress", icon: "cypress" },
+          { label: "Postman", icon: "postman" },
+          { label: "API Automation", icon: "api" },
+        ],
+      },
+      {
+        id: "ai-dev",
+        title: "AI-Assisted Development",
+        items: [
+          { label: "ChatGPT", icon: "chatgpt" },
+          { label: "Claude", icon: "claude" },
+          { label: "Cursor", icon: "cursor" },
+        ],
+      },
+      {
+        id: "cicd",
+        title: "CI/CD & DevOps",
+        items: [
+          { label: "Git", icon: "git" },
+          { label: "GitHub", icon: "github" },
+          { label: "GitHub Actions", icon: "githubactions" },
+          { label: "Docker", icon: "docker" },
+        ],
+      },
+      {
+        id: "project-management",
+        title: "Project Management",
+        items: [
+          { label: "Jira", icon: "jira" },
+          { label: "Trello", icon: "trello" },
+          { label: "Linear", icon: "linear" },
+          { label: "Miro", icon: "miro" },
+        ],
+      },
+      {
+        id: "methodologies",
+        title: "Methodologies",
+        size: "full",
+        items: [
+          { label: "Agile", icon: "agile" },
+          { label: "Scrum", icon: "scrum" },
+          { label: "Kanban", icon: "kanban" },
+          { label: "Sprint Planning", icon: "sprint" },
+          { label: "TDD", icon: "tdd" },
+        ],
+      },
+    ],
+    // Tool logos shown in the marquee above the grid
+    marquee: [
+      "playwright",
+      "cypress",
+      "postman",
+      "git",
+      "github",
+      "githubactions",
+      "docker",
+      "jira",
+      "trello",
+      "linear",
+      "miro",
+      "chatgpt",
+      "claude",
+      "cursor",
+    ],
+  },
+
   experience: [
     {
-      role: "Senior SQA Engineer",
+      role: "Senior Software Quality Assurance Engineer",
       company: "Nextpak Agile Solutions",
       location: "Rawalpindi",
-      duration: "Dec 2022 — Present",
-      year: "2022",
-      contribution:
-        "Lead quality across client programs: Cypress automation, CI pipelines, API validation, mentoring.",
-      tech: ["Cypress", "CI", "API"],
+      duration: "Dec 2022 – Present",
+      current: true,
       highlights: [
-        "Cut manual regression time by 60% with a Cypress E2E framework",
-        "Wired automated suites into CI so releases wait on evidence",
-        "Mentored junior QA on automation and Agile quality practice",
+        "Led QA activities across multiple client projects by implementing structured test strategies and automation frameworks to improve product quality and reduce production defects.",
+        "Designed and executed test plans, test cases, and automation scripts for web applications, achieving 95%+ test coverage.",
+        "Implemented Cypress-based end-to-end automation, reducing manual testing effort by 60% and improving regression testing efficiency.",
+        "Conducted API and integration testing to verify backend functionality, data integrity, and reliable communication between services.",
+        "Conducted functional, hallucination, and context-retention testing for AI chatbots across conversational scenarios and edge cases.",
+        "Collaborated with cross-functional Agile teams throughout sprint planning, daily standups, and retrospectives.",
+        "Mentored junior QA engineers on testing practices, automation, and Agile methodologies.",
       ],
+      tags: ["Cypress", "Playwright", "Postman", "AI/LLM Testing", "Agile"],
     },
     {
-      role: "Project Manager",
-      company: "Metodo Vicon",
-      location: null,
-      duration: "Dec 2020 — Jan 2022",
-      year: "2020",
-      contribution:
-        "Owned feature delivery and UAT for 15+ platform enhancements per quarter.",
-      tech: ["Jira", "UAT"],
-      highlights: [
-        "Led functional, regression, exploratory, and UAT for 15+ features / quarter",
-        "Translated client needs into sprint backlogs and acceptance criteria",
-        "Ran Jira as the system of record for delivery and release readiness",
-      ],
-    },
-    {
-      role: "Junior QA Engineer",
-      company: "Xtreme Software Services",
+      role: "Software Quality Assurance Engineer",
+      company: "Xtreme Software Services Pvt Ltd",
       location: "Peshawar",
-      duration: "Dec 2020 — Jun 2022",
-      year: "2020",
-      contribution:
-        "Manual, API, and regression testing for enterprise releases.",
-      tech: ["API", "Regression"],
+      duration: "Dec 2020 – Jun 2022",
+      current: false,
       highlights: [
-        "Caught critical defects in enterprise apps before production",
-        "Validated APIs for data integrity and integrations",
-        "Ran regression, smoke, and sanity on every release cycle",
+        "Executed comprehensive manual testing for enterprise applications, identifying critical defects before production release.",
+        "Performed thorough API testing to validate backend functionality, data integrity, and system integrations.",
+        "Participated actively in Agile ceremonies — sprint planning, daily standups, and retrospectives.",
+        "Created detailed test documentation including test plans, test cases, and defect reports.",
+        "Collaborated with developers to reproduce, debug, and resolve complex software issues.",
+        "Performed regression, smoke, and sanity testing for each release cycle, ensuring stable deployments.",
       ],
+      tags: ["Manual Testing", "API Testing", "Regression", "Jira"],
     },
   ],
-  projects: [
-    {
-      id: "automation-testing-framework",
-      title: "Automation Testing Framework",
-      category: "Automation",
-      domain: "Release regression",
-      role: "Senior SQA Engineer",
-      impact: "3 days → 4 hours",
-      description:
-        "Modular Cypress E2E framework that replaced multi-day manual regression.",
-      techStack: ["Cypress", "JavaScript", "GitHub Actions"],
-      diagram: "framework",
-      details: {
-        problem: "Manual regression took 3 days per release.",
-        approach: "Modular Cypress suite, page objects, and a CI job the release waits on.",
-        outcome: "Runtime dropped to 4 hours. Coverage rose ~60%.",
+
+  aiTesting: {
+    title: "Testing the systems that talk back.",
+    intro:
+      "Chatbots and LLMs fail differently from deterministic software. These are the four areas I test them on.",
+    cards: [
+      {
+        icon: "hallucination",
+        title: "Hallucination Testing",
+        text: "Verifying chatbot answers stay grounded in real data, not invented facts.",
       },
-      link: "",
-      private: true,
-    },
-    {
-      id: "cypress-ecommerce-suite",
-      title: "Cypress E-Commerce Suite",
-      category: "Automation",
-      domain: "Commerce",
-      role: "Author",
-      impact: "Cart & checkout covered",
-      description:
-        "POM-based Cypress suite for critical commerce flows, with Allure reporting.",
-      techStack: ["Cypress", "POM", "Allure"],
-      diagram: "commerce",
-      details: {
-        problem: "Manual e-commerce checks were inconsistent and slow.",
-        approach: "Page objects around cart and checkout, with Allure for failure evidence.",
-        outcome: "Reliable regression on cart and checkout, with visible failure reports.",
+      {
+        icon: "context",
+        title: "Context Retention",
+        text: "Validating that conversations stay coherent across many turns and topic shifts.",
       },
-      link: "https://github.com/Ihtisham-Khattak/cypress_commerce",
-    },
-    {
-      id: "k6-api-testing",
-      title: "k6 API Testing",
-      category: "Performance",
-      domain: "API load",
-      role: "Author",
-      impact: "Thresholds as gates",
-      description:
-        "Smoke, load, and stress suites that fail the build when latency or errors break.",
-      techStack: ["k6", "JavaScript"],
-      diagram: "k6",
-      details: {
-        problem: "APIs hid bottlenecks until production traffic arrived.",
-        approach: "k6 profiles for smoke, load, and stress, with thresholds that fail CI.",
-        outcome: "Load profiles with pass/fail thresholds, ready for CI reuse.",
+      {
+        icon: "prompt",
+        title: "Prompt Engineering",
+        text: "Crafting adversarial and edge-case prompts to stress-test model behavior.",
       },
-      link: "https://github.com/Ihtisham-Khattak/k6_testing",
-    },
-  ],
-  testimonials: [
+      {
+        icon: "aigen",
+        title: "AI-Assisted Test Generation",
+        text: "Using ChatGPT, Claude and Cursor to accelerate test case design without losing rigor.",
+      },
+    ],
+  },
+
+  process: {
+    title: "Quality built into every sprint",
+    steps: [
+      {
+        id: "01",
+        title: "Plan",
+        text: "Test strategy agreed during sprint planning, before work starts.",
+      },
+      {
+        id: "02",
+        title: "Automate",
+        text: "Playwright and Cypress suites for the critical paths.",
+      },
+      {
+        id: "03",
+        title: "Integrate",
+        text: "GitHub Actions and Docker run the same checks in CI.",
+      },
+      {
+        id: "04",
+        title: "Verify",
+        text: "Regression, exploratory and performance testing before release.",
+      },
+    ],
+  },
+
+  credentials: [
     {
-      name: "Tahir Nazir",
-      role: "Senior Fullstack Developer",
-      feedback:
-        "Ihtisham doesn't just find bugs; he helps us understand the root cause. His automation scripts saved us countless hours.",
+      icon: "education",
+      title: "BS Computer Science",
+      text: "City University of Science and Information Technology, Peshawar",
+      meta: "2018 – 2022",
     },
     {
-      name: "Cristina",
-      role: "Product Manager",
-      feedback:
-        "Reliable, thorough, and communicative. Ihtisham ensures that what we ship meets the highest quality standards.",
+      icon: "certification",
+      title: "Certifications",
+      text: "Certified Git · Agile Project Management (HP Life)",
+      meta: "",
     },
   ],
 };

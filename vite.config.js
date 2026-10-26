@@ -17,6 +17,7 @@ function copySpa404() {
 
 export default defineConfig({
   plugins: [react(), copySpa404()],
+  appType: "spa",
   build: {
     rollupOptions: {
       output: {

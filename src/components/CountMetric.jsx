@@ -20,7 +20,7 @@ function CountMetricInner({ raw, label }) {
 
     let frame;
     let start;
-    const duration = 900;
+    const duration = 1100;
 
     const tick = (time) => {
       if (start === undefined) start = time;
@@ -35,12 +35,18 @@ function CountMetricInner({ raw, label }) {
   }, [inView, reducedMotion, value]);
 
   return (
-    <li ref={ref}>
-      <span>
+    <li ref={ref} className="stat">
+      {/* Final value for assistive tech; the counting number is decorative */}
+      <span className="sr-only">
+        {raw} {label}
+      </span>
+      <span className="stat-value" aria-hidden="true">
         {display}
         {suffix}
       </span>
-      {label}
+      <span className="stat-label" aria-hidden="true">
+        {label}
+      </span>
     </li>
   );
 }

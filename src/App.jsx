@@ -1,61 +1,63 @@
+import { useEffect, useState } from "react";
 import { portfolioData } from "./data/portfolioData";
 import { useTheme } from "./hooks/useTheme";
-import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Projects from "./components/Projects";
-import Expertise from "./components/Expertise";
-import Experience from "./components/Experience";
+import Stats from "./components/Stats";
 import About from "./components/About";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
+import AITesting from "./components/AITesting";
+import Process from "./components/Process";
+import Credentials from "./components/Credentials";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 
-function isHomePath() {
-  if (typeof window === "undefined") return true;
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+function isHomePath(pathname = window.location.pathname) {
+  const path = pathname.replace(/\/+$/, "") || "/";
   return path === "/" || path === "/index.html";
 }
 
 function App() {
   const { theme, toggleTheme, isDark } = useTheme();
-  const isNotFound = !isHomePath();
+  const [isNotFound, setIsNotFound] = useState(
+    () => typeof window !== "undefined" && !isHomePath()
+  );
+
+  useEffect(() => {
+    const sync = () => setIsNotFound(!isHomePath());
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
+  }, []);
+
+  const { personal, hero, stats, about, skills, experience, aiTesting, process, credentials } =
+    portfolioData;
 
   return (
-    <div className={`app ${isDark ? "dark" : ""}`}>
-      <a href={isNotFound ? "/" : "#main-content"} className="skip-link">
+    <div className={`app ${isDark ? "dark" : ""} ${isNotFound ? "is-not-found" : ""}`}>
+      <a href={isNotFound ? "#not-found-title" : "#main-content"} className="skip-link">
         Skip to content
       </a>
-      <Header
-        theme={theme}
-        onToggleTheme={toggleTheme}
-        isNotFound={isNotFound}
-      />
+      <Navbar theme={theme} onToggleTheme={toggleTheme} isNotFound={isNotFound} />
       <main id="main-content">
         {isNotFound ? (
           <NotFound />
         ) : (
           <>
-            <Hero
-              data={portfolioData.hero}
-              personal={portfolioData.personal}
-              metrics={portfolioData.metrics}
-            />
-            <Projects data={portfolioData.projects} />
-            <Expertise
-              data={portfolioData.expertise}
-              tools={portfolioData.tools}
-              projects={portfolioData.projects}
-            />
-            <Experience data={portfolioData.experience} />
-            <About
-              data={portfolioData.about}
-              quotes={portfolioData.testimonials}
-            />
-            <Contact contactInfo={portfolioData.personal} />
+            <Hero data={hero} personal={personal} />
+            <Stats data={stats} />
+            <About data={about} />
+            <Skills data={skills} />
+            <Experience data={experience} />
+            <AITesting data={aiTesting} />
+            <Process data={process} />
+            <Credentials data={credentials} />
+            <Contact contactInfo={personal} />
           </>
         )}
       </main>
-      <Footer personal={portfolioData.personal} isNotFound={isNotFound} />
+      <Footer personal={personal} isNotFound={isNotFound} />
     </div>
   );
 }

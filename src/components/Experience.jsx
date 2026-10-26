@@ -1,72 +1,73 @@
-import { motion } from "framer-motion";
-import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
-import SectionIntro from "./SectionIntro";
+import { Check } from "lucide-react";
+import { Reveal } from "./Reveal";
 import "./Experience.css";
 
-const Experience = ({ data }) => {
-  const reducedMotion = usePrefersReducedMotion();
+const Experience = ({ data }) => (
+  <section
+    id="experience"
+    className="section experience"
+    aria-labelledby="experience-title"
+  >
+    <div className="container">
+      <Reveal className="section-head">
+        <p className="eyebrow">{"// 03 — EXPERIENCE"}</p>
+        <h2 id="experience-title" className="section-title">
+          Where I&apos;ve shipped quality
+        </h2>
+      </Reveal>
 
-  return (
-    <section
-      id="experience"
-      className="section experience-section"
-      aria-labelledby="experience-title"
-    >
-      <div className="container">
-        <SectionIntro
-          index="03"
-          label="Experience"
-          title="Where the practice was applied."
-          aside="Dec 2020 — Present. Roles, companies, and what moved."
-          titleId="experience-title"
-        />
-
-        <ol className="timeline">
-          {data.map((job, index) => (
-            <motion.li
-              key={`${job.company}-${job.role}`}
-              className={`timeline-item ${index === 0 ? "is-current" : ""}`}
-              initial={reducedMotion ? false : { opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-12% 0px" }}
-              transition={
-                reducedMotion
-                  ? { duration: 0 }
-                  : {
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 20,
-                      delay: index * 0.08,
-                    }
-              }
-            >
-              <p className="timeline-year">
-                <span>{job.year}</span>
-                {index === 0 && <span>Now</span>}
-              </p>
-              <article className="timeline-role">
-                <p className="timeline-company">{job.company}</p>
-                <h3>{job.role}</h3>
-                <p className="timeline-meta">
-                  {job.duration}
-                  {job.location ? `  ·  ${job.location}` : ""}
+      <ol className="timeline">
+        {data.map((job, index) => (
+          <Reveal
+            as="li"
+            key={`${job.company}-${job.role}`}
+            className={`timeline-item ${job.current ? "is-current" : ""}`}
+            delay={index * 0.06}
+          >
+            <span className="timeline-node" aria-hidden="true" />
+            <article className="card timeline-card">
+              <header className="timeline-head">
+                <div>
+                  <h3>{job.role}</h3>
+                  <p className="timeline-company">
+                    {job.company}
+                    <span aria-hidden="true"> · </span>
+                    {job.location}
+                  </p>
+                </div>
+                <p className="timeline-dates">
+                  {job.current && (
+                    <span className="timeline-badge">
+                      <span className="status-dot" aria-hidden="true" />
+                      Current
+                    </span>
+                  )}
+                  <span className="timeline-range">{job.duration}</span>
                 </p>
-                <p className="timeline-copy">{job.contribution}</p>
-                <ul>
-                  {job.highlights.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                {job.tech?.length > 0 && (
-                  <p className="timeline-tech">{job.tech.join("  ·  ")}</p>
-                )}
-              </article>
-            </motion.li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-};
+              </header>
+
+              <ul className="timeline-points">
+                {job.highlights.map((point) => (
+                  <li key={point}>
+                    <Check size={16} strokeWidth={2.25} aria-hidden="true" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+
+              <ul className="timeline-tags" aria-label="Technologies">
+                {job.tags.map((tag) => (
+                  <li key={tag} className="tag">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </Reveal>
+        ))}
+      </ol>
+    </div>
+  </section>
+);
 
 export default Experience;

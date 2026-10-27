@@ -35,6 +35,7 @@ export const portfolioData = {
   ],
 
   about: {
+    portraitAlt: "Portrait of Ihtisham Khattak in a black suit and tie",
     title: "I find the bugs before your users do.",
     body:
       "Results-driven QA Engineer with 3+ years of experience in manual and automation testing across Agile/Scrum teams. I design comprehensive test strategies, build automation that scales, and catch defects early — so teams can ship with confidence. Lately, I've been focused on AI chatbot and LLM testing: hallucination detection, context-retention validation, prompt engineering, and AI-assisted test generation.",
@@ -238,6 +239,10 @@ export const portfolioData = {
         text: "Regression, exploratory and performance testing before release.",
       },
     ],
+  },
+
+  initiative: {
+    alt: "A small reminder: Keep the Earth Green.",
   },
 
   credentials: [

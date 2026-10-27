@@ -11,7 +11,7 @@ Browser
   └── Vite SPA (React)
         ├── Navbar (nav, theme toggle, resume, mobile overlay)
         ├── Hero (+ TestRunner illustration) → Stats
-        ├── About → Skills → Experience → AITesting → Process → Credentials → Contact
+        ├── About → Skills → Experience → AITesting → Process → Credentials → Initiative → Contact
         ├── Footer
         └── portfolioData.js (content source of truth)
 ```
@@ -20,10 +20,11 @@ Browser
 
 ```
 src/
-  assets/           Resume PDF, portrait images (currently unused)
+  assets/           Resume PDF, optimized portrait and banner WebP (responsive srcset)
   components/       One component per section, with co-located CSS
     Illustrations   Inline-SVG: MagnifierBug, PipelineDiagram, ChatProbe
     TestRunner      Hero terminal illustration (typewriter + coverage ring)
+    Initiative      "Keep the Earth Green" banner band, shown before Contact
     Reveal          Scroll reveal (CSS animation + one shared IntersectionObserver)
     SkillIcon       Renders an icon by key; registry lives in skillIcons.js
   data/             portfolioData.js

@@ -1,6 +1,8 @@
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { MagnifierBug } from "./Illustrations";
 import { SkillIcon } from "./SkillIcon";
+import portrait480 from "../assets/portrait-480.webp";
+import portrait880 from "../assets/portrait-880.webp";
 import "./About.css";
 
 const About = ({ data }) => (
@@ -16,7 +18,21 @@ const About = ({ data }) => (
         </Reveal>
 
         <Reveal className="about-art" delay={0.1}>
-          <MagnifierBug />
+          <figure className="portrait">
+            <img
+              src={portrait880}
+              srcSet={`${portrait480} 480w, ${portrait880} 880w`}
+              sizes="(min-width: 1024px) 26rem, 80vw"
+              width="880"
+              height="1167"
+              alt={data.portraitAlt}
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <div className="lens" aria-hidden="true">
+            <MagnifierBug />
+          </div>
         </Reveal>
       </div>
 

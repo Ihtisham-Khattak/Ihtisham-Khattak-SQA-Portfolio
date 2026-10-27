@@ -10,6 +10,7 @@ import Experience from "./components/Experience";
 import AITesting from "./components/AITesting";
 import Process from "./components/Process";
 import Credentials from "./components/Credentials";
+import Initiative from "./components/Initiative";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
@@ -31,7 +32,7 @@ function App() {
     return () => window.removeEventListener("popstate", sync);
   }, []);
 
-  const { personal, hero, stats, about, skills, experience, aiTesting, process, credentials } =
+  const { personal, hero, stats, about, skills, experience, aiTesting, process, credentials, initiative } =
     portfolioData;
 
   return (
@@ -53,6 +54,7 @@ function App() {
             <AITesting data={aiTesting} />
             <Process data={process} />
             <Credentials data={credentials} />
+            <Initiative data={initiative} />
             <Contact contactInfo={personal} />
           </>
         )}

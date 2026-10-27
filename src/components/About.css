@@ -10,9 +10,47 @@
 }
 
 .about-art {
-  max-width: 24rem;
+  position: relative;
+  max-width: 26rem;
   width: 100%;
   justify-self: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Portrait: framed card, no crop (image is 3:4) */
+.portrait {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  box-shadow: 0 32px 64px -36px var(--shadow-tint);
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Magnifier illustration rides the corner like an inspection badge */
+.lens {
+  position: absolute;
+  left: -1rem;
+  bottom: -1.5rem;
+  width: clamp(8rem, 42%, 11rem);
+  padding: 0.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  box-shadow: 0 24px 48px -24px var(--shadow-tint);
+}
+
+.lens .il-mono {
+  display: none;
 }
 
 .values {

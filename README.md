@@ -34,10 +34,11 @@ All copy lives in [`src/data/portfolioData.js`](src/data/portfolioData.js); comp
 |-----|---------|
 | `personal` | Name, location, phone, email, LinkedIn / GitHub URLs |
 | `hero`, `stats` | Hero and the stats strip |
-| `about` | About + the three value cards |
+| `about` | About copy, portrait alt text, the three value cards |
 | `skills` | Bento groups (each skill has an `icon` key) and the logo marquee |
 | `experience` | Timeline entries |
 | `aiTesting`, `process`, `credentials` | AI testing, how I work, education |
+| `initiative` | Alt text for the "Keep the Earth Green" banner |
 
 Skill `icon` keys map to icons in [`src/components/skillIcons.js`](src/components/skillIcons.js).
 Brand logos show their brand color on hover; add a new tool by adding one entry there.
@@ -46,7 +47,13 @@ Resume PDF: [`src/assets/Ihtisham_Khattak_SQA.pdf`](src/assets/Ihtisham_Khattak_
 
 ## Page flow
 
-Hero → Stats → About → Skills → Experience → AI Testing → Process → Credentials → Contact
+Hero → Stats → About → Skills → Experience → AI Testing → Process → Credentials → "Keep the Earth Green" banner → Contact
+
+## Images
+
+Optimized WebP copies live in `src/assets/`: `portrait-{480,880}.webp` (About) and `banner-keep-earth-green-{1200,2400}.webp`.
+To swap one, export the new image at the same widths and keep the filenames, or update the imports in
+`About.jsx` / `Initiative.jsx`.
 
 ## Colors
 

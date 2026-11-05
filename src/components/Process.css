@@ -1,9 +1,10 @@
-.process-diagram {
-  padding: clamp(1.25rem, 3vw, 2.5rem);
+.process-head {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
-.process-diagram:hover {
-  transform: none;
+.process-diagram {
+  padding: clamp(1.25rem, 3vw, 2.25rem) 0;
+  border-block: 1px solid var(--border-strong);
 }
 
 .steps {
@@ -14,13 +15,8 @@
 }
 
 .step {
-  padding-top: 1.1rem;
-  border-top: 1px solid var(--border-strong);
-  transition: border-color 0.3s var(--ease-out);
-}
-
-.step:hover {
-  border-top-color: var(--accent);
+  padding-top: 1rem;
+  border-top: 1px solid var(--text);
 }
 
 .step-id {

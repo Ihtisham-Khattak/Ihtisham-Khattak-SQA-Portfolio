@@ -1,0 +1,247 @@
+.chapter {
+  position: relative;
+  padding: var(--chapter-space) 0;
+  background-color: var(--bg);
+  color: var(--text);
+  scroll-margin-top: calc(var(--strip-height) - 1px);
+}
+
+@media (min-width: 1100px) {
+  .chapter {
+    scroll-margin-top: 0;
+  }
+}
+
+.chapter-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+/* The top rule: dashed while unverified, fills with accent as the run line passes */
+.chapter-rule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--border-strong) 0 7px,
+    transparent 7px 13px
+  );
+  overflow: hidden;
+}
+
+.chapter-rule::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.chapter[data-state="running"] .chapter-rule::after {
+  animation: rule-run 0.7s linear forwards;
+}
+
+.chapter[data-state="passed"] .chapter-rule::after {
+  transform: scaleX(1);
+}
+
+.chapter[data-state="failed"] .chapter-rule::after {
+  background: var(--danger);
+  transform: scaleX(1);
+}
+
+@keyframes rule-run {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.chapter-id {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.chapter-tc {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.chapter-name {
+  color: var(--text-muted);
+}
+
+/* Stamp */
+.stamp {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 36px;
+  padding: 0.3rem 0.8rem;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1.5px dashed var(--border-strong);
+  border-radius: 4px;
+  transition: color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+
+.stamp:hover {
+  border-color: var(--accent);
+}
+
+.stamp-hatch {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--border) 0 2px,
+    transparent 2px 7px
+  );
+}
+
+.stamp > :not(.stamp-hatch) {
+  position: relative;
+}
+
+.stamp[data-state="running"] {
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+
+.stamp[data-state="running"] .stamp-hatch {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--accent-soft) 0 3px,
+    transparent 3px 8px
+  );
+  background-size: 22px 22px;
+  animation: hatch-run 0.7s linear infinite;
+}
+
+@keyframes hatch-run {
+  to {
+    background-position: 22px 0;
+  }
+}
+
+.stamp[data-state="passed"] {
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  background: var(--accent-soft);
+  animation: stamp-down 0.32s var(--ease-out) both;
+}
+
+.stamp[data-state="passed"] .stamp-hatch,
+.stamp[data-state="failed"] .stamp-hatch {
+  opacity: 0;
+}
+
+.stamp[data-state="failed"] {
+  color: var(--danger);
+  border: 1.5px solid var(--danger);
+  background: var(--danger-soft);
+  animation: stamp-down 0.32s var(--ease-out) both;
+}
+
+@keyframes stamp-down {
+  from {
+    opacity: 0;
+    transform: scale(1.25) rotate(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* The real checks behind a stamp */
+.chapter-checks {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+}
+
+.chapter-checks ul {
+  display: grid;
+}
+
+.chapter-checks li {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+  gap: 0.25rem 0.75rem;
+  align-items: baseline;
+  padding: 0.45rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.chapter-checks li + li {
+  border-top: 1px solid var(--border);
+}
+
+.check-mark {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+li[data-pass="false"] .check-mark,
+li[data-pass="false"] .check-detail {
+  color: var(--danger);
+}
+
+.check-label {
+  color: var(--text);
+}
+
+.check-detail {
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.check-empty {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.chapter-body {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 640px) {
+  .stamp {
+    min-height: 44px;
+  }
+
+  .chapter-checks li {
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+  }
+
+  .check-detail {
+    grid-column: 2;
+    text-align: left;
+  }
+}

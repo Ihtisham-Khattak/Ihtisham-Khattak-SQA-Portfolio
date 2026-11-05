@@ -1,5 +1,7 @@
 .footer {
-  border-top: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  border-top: 1px solid var(--text);
   padding: 1.25rem 0;
 }
 
@@ -30,6 +32,10 @@
 
 .footer-pass {
   color: var(--accent);
+}
+
+.footer-pass.is-bad {
+  color: var(--danger);
 }
 
 .back-to-top {

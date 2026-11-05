@@ -1,69 +1,65 @@
-import { memo } from "react";
+import Chapter from "./Chapter";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { SkillIcon } from "./SkillIcon";
-import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import "./Skills.css";
 
-const LogoMarquee = memo(function LogoMarquee({ keys, labels, reduced }) {
-  const items = reduced ? keys : [...keys, ...keys];
-  return (
-    <div className="logo-marquee" aria-hidden="true">
-      <div className={`logo-track ${reduced ? "is-static" : ""}`}>
-        {items.map((key, index) => (
-          <span className="logo-marquee-item" key={`${key}-${index}`}>
-            <SkillIcon name={key} size={22} />
-            {labels[key]}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-});
-
-const Skills = ({ data }) => {
-  const reduced = usePrefersReducedMotion();
-  const labels = Object.fromEntries(
-    data.groups.flatMap((group) => group.items.map((i) => [i.icon, i.label]))
-  );
-
-  return (
-    <section id="skills" className="section skills" aria-labelledby="skills-title">
-      <div className="container">
-        <Reveal className="section-head">
-          <p className="eyebrow">{"// 02 — SKILLS"}</p>
-          <h2 id="skills-title" className="section-title">
-            {data.title}
-          </h2>
-        </Reveal>
-      </div>
-
-      <Reveal>
-        <LogoMarquee keys={data.marquee} labels={labels} reduced={reduced} />
-      </Reveal>
-
-      <div className="container">
-        <RevealGroup as="ul" className="bento">
-          {data.groups.map((group) => (
-            <RevealItem
-              as="li"
-              key={group.id}
-              className={`card bento-card ${group.size ? `is-${group.size}` : ""}`}
-            >
-              <h3>{group.title}</h3>
-              <ul className="bento-chips">
-                {group.items.map((item) => (
-                  <li key={item.label} className="chip">
-                    <SkillIcon name={item.icon} size={16} />
-                    {item.label}
-                  </li>
-                ))}
-              </ul>
-            </RevealItem>
-          ))}
-        </RevealGroup>
-      </div>
-    </section>
-  );
+// Where a skill is "seen in" is derived from the experience tags already in the
+// data. A skill is matched only when a tag names it, or is an obvious umbrella for
+// it; nothing is inferred beyond that.
+const UMBRELLA = {
+  "AI/LLM Testing": ["AI Chatbot Testing", "LLM Testing"],
+  Regression: ["Regression Testing"],
 };
+
+function seenIn(skill, experience) {
+  return experience
+    .filter((job) =>
+      job.tags.some((tag) => tag === skill || UMBRELLA[tag]?.includes(skill))
+    )
+    .map((job) => job.company.split(" ")[0]);
+}
+
+const Skills = ({ data, experience }) => (
+  <Chapter id="skills" labelledBy="skills-title">
+    <Reveal className="ledger-head">
+      <h2 id="skills-title" className="section-title">
+        {data.title}
+      </h2>
+      <p className="ledger-key">
+        Grouped by discipline. A company name on the right means the skill appears in that
+        role&apos;s focus areas.
+      </p>
+    </Reveal>
+
+    <RevealGroup className="ledger">
+      {data.groups.map((group) => (
+        <RevealItem as="section" key={group.id} className="ledger-group" aria-labelledby={`g-${group.id}`}>
+          <h3 id={`g-${group.id}`} className="ledger-title">
+            {group.title}
+            <span className="ledger-count">{String(group.items.length).padStart(2, "0")}</span>
+          </h3>
+          <ul>
+            {group.items.map((item) => {
+              const seen = seenIn(item.label, experience);
+              return (
+                <li key={item.label} className="ledger-row">
+                  <SkillIcon name={item.icon} size={17} />
+                  <span className="ledger-name">{item.label}</span>
+                  <span className="ledger-leader" aria-hidden="true" />
+                  {seen.length > 0 && (
+                    <span className="ledger-seen">
+                      <span className="sr-only">Seen in </span>
+                      {seen.join(", ")}
+                    </span>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </RevealItem>
+      ))}
+    </RevealGroup>
+  </Chapter>
+);
 
 export default Skills;

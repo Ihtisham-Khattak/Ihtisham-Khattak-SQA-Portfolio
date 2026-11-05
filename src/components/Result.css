@@ -1,0 +1,180 @@
+.chapter-result {
+  padding-bottom: 0;
+  /* clip (not hidden) so the sticky stage keeps working */
+  overflow-x: clip;
+}
+
+/* Tall track gives the peak the most scroll room on the page */
+.result-track {
+  position: relative;
+  height: calc(var(--viewport, 100svh) * 2.4);
+}
+
+.result-track.is-static {
+  height: auto;
+  padding-bottom: var(--chapter-space);
+}
+
+.result-stage {
+  position: sticky;
+  top: calc(var(--strip-height) + 1.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  min-height: calc(100svh - var(--strip-height) - 3rem);
+  padding-block: 1rem;
+}
+
+@media (min-width: 1100px) {
+  .result-stage {
+    top: 1.5rem;
+    min-height: calc(100svh - 3rem);
+  }
+}
+
+.result-track.is-static .result-stage {
+  position: static;
+  min-height: 0;
+}
+
+.result-title {
+  font-size: clamp(2.4rem, 4.5vw + 0.8rem, 5rem);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+/* The report prints: monospace lines with dotted leaders */
+.result-lines {
+  display: grid;
+  max-width: 46rem;
+  border-top: 1px solid var(--border-strong);
+}
+
+.result-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 0.5vw + 0.75rem, 1.1rem);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.result-line.is-printed {
+  opacity: 1;
+  transform: none;
+}
+
+.result-line dt {
+  color: var(--text-muted);
+}
+
+.result-leader {
+  flex: 1;
+  min-width: 1rem;
+  border-bottom: 1px dotted var(--border-strong);
+}
+
+.result-line dd {
+  margin: 0;
+  font-weight: 500;
+  color: var(--accent);
+  text-align: right;
+}
+
+.result-line.is-bad dd {
+  color: var(--danger);
+}
+
+.result-line.is-warn dd {
+  color: var(--text);
+}
+
+.result-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  max-width: 46rem;
+}
+
+.result-note {
+  max-width: 30rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.result-note.is-printed {
+  opacity: 1;
+}
+
+/* The seal: always the opposite ground, so it pops off the intertitle */
+.seal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.9rem 1.3rem 0.8rem;
+  color: var(--accent);
+  background: var(--bg);
+  border: 3px double var(--accent);
+  border-radius: 6px;
+  max-width: 100%;
+  opacity: 0;
+  transform: translateY(-18px) rotate(-6deg);
+  transition: opacity 0.2s var(--ease-out), transform 0.35s var(--ease-out);
+}
+
+.seal.is-printed {
+  opacity: 1;
+  transform: rotate(-3deg);
+}
+
+.seal[data-verdict="failed"] {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.seal-word {
+  font-family: var(--font-mono);
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.6rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.seal-sign {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.result-sentinel {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  top: calc((100% - 100svh) * var(--at));
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result-line,
+  .result-note,
+  .seal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .seal {
+    transform: rotate(-3deg);
+  }
+}

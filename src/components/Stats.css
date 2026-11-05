@@ -1,27 +1,26 @@
-.stats {
-  padding-bottom: calc(var(--section-space) / 2);
+.chapter-stats {
+  padding-top: calc(var(--chapter-space) / 2);
 }
 
+/* Figures set like a results table: ruled, left-aligned, no boxes */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  overflow: hidden;
+  border-top: 1px solid var(--text);
+  border-bottom: 1px solid var(--border-strong);
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: clamp(1.25rem, 3vw, 2rem);
-  border-right: 1px solid var(--border);
+  gap: 0.6rem;
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(0.75rem, 2vw, 1.5rem) clamp(1.25rem, 3vw, 2rem) 0;
   border-bottom: 1px solid var(--border);
 }
 
-.stat:nth-child(2n) {
-  border-right: none;
+.stat:nth-child(even) {
+  padding-left: clamp(0.75rem, 2vw, 1.5rem);
+  border-left: 1px solid var(--border);
 }
 
 .stat:nth-last-child(-n + 2) {
@@ -30,11 +29,10 @@
 
 .stat-value {
   font-family: var(--font-heading);
-  font-size: clamp(2.25rem, 3vw + 1rem, 3.5rem);
+  font-size: clamp(2.5rem, 3.5vw + 1rem, 4rem);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.035em;
-  color: var(--text);
+  letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
 }
 
@@ -53,13 +51,15 @@
   }
 
   .stat,
-  .stat:nth-child(2n),
+  .stat:nth-child(even),
   .stat:nth-last-child(-n + 2) {
-    border-right: 1px solid var(--border);
+    padding-left: clamp(0.75rem, 2vw, 1.5rem);
     border-bottom: none;
+    border-left: 1px solid var(--border);
   }
 
-  .stat:last-child {
-    border-right: none;
+  .stat:first-child {
+    padding-left: 0;
+    border-left: none;
   }
 }

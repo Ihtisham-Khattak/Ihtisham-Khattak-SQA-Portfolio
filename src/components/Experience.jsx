@@ -1,73 +1,63 @@
 import { Check } from "lucide-react";
+import Chapter from "./Chapter";
 import { Reveal } from "./Reveal";
 import "./Experience.css";
 
 const Experience = ({ data }) => (
-  <section
-    id="experience"
-    className="section experience"
-    aria-labelledby="experience-title"
-  >
-    <div className="container">
-      <Reveal className="section-head">
-        <p className="eyebrow">{"// 03 — EXPERIENCE"}</p>
-        <h2 id="experience-title" className="section-title">
-          Where I&apos;ve shipped quality
-        </h2>
-      </Reveal>
+  <Chapter id="experience" ground="subtle" labelledBy="experience-title">
+    <Reveal className="log-head">
+      <h2 id="experience-title" className="section-title">
+        Where I&apos;ve shipped quality
+      </h2>
+    </Reveal>
 
-      <ol className="timeline">
-        {data.map((job, index) => (
-          <Reveal
-            as="li"
-            key={`${job.company}-${job.role}`}
-            className={`timeline-item ${job.current ? "is-current" : ""}`}
-            delay={index * 0.06}
-          >
-            <span className="timeline-node" aria-hidden="true" />
-            <article className="card timeline-card">
-              <header className="timeline-head">
-                <div>
-                  <h3>{job.role}</h3>
-                  <p className="timeline-company">
-                    {job.company}
-                    <span aria-hidden="true"> · </span>
-                    {job.location}
-                  </p>
-                </div>
-                <p className="timeline-dates">
-                  {job.current && (
-                    <span className="timeline-badge">
-                      <span className="status-dot" aria-hidden="true" />
-                      Current
-                    </span>
-                  )}
-                  <span className="timeline-range">{job.duration}</span>
-                </p>
-              </header>
+    <ol className="log">
+      {data.map((job, index) => (
+        <Reveal
+          as="li"
+          key={`${job.company}-${job.role}`}
+          className={`log-entry ${job.current ? "is-current" : ""}`}
+          delay={index * 0.06}
+        >
+          <p className="log-dates">
+            {job.current && (
+              <span className="log-badge">
+                <span className="status-dot" aria-hidden="true" />
+                Current
+              </span>
+            )}
+            <span className="log-range">{job.duration}</span>
+          </p>
 
-              <ul className="timeline-points">
-                {job.highlights.map((point) => (
-                  <li key={point}>
-                    <Check size={16} strokeWidth={2.25} aria-hidden="true" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
+          <article className="log-body">
+            <h3>{job.role}</h3>
+            <p className="log-company">
+              {job.company}
+              <span aria-hidden="true"> / </span>
+              {job.location}
+            </p>
 
-              <ul className="timeline-tags" aria-label="Technologies">
-                {job.tags.map((tag) => (
-                  <li key={tag} className="tag">
-                    {tag}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </Reveal>
-        ))}
-      </ol>
-    </div>
-  </section>
+            <ul className="log-points">
+              {job.highlights.map((point) => (
+                <li key={point}>
+                  <Check size={16} strokeWidth={2.25} aria-hidden="true" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+
+            <ul className="chips" aria-label="Technologies">
+              {job.tags.map((tag) => (
+                <li key={tag} className="tag">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          </article>
+        </Reveal>
+      ))}
+    </ol>
+  </Chapter>
 );
 
 export default Experience;

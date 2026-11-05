@@ -1,68 +1,230 @@
-/* Palette: green, white, black. All colors live here as tokens. */
+/* Palette: green, white, black. The report is printed on paper (white) with black ink
+   and one green PASS stamp. Two grounds exist: paper and ink. Chapters pick a ground
+   with data-ground; the theme toggle swaps which ground is the base. */
 :root {
-  --bg: #fafbfa;
-  --bg-elevated: #ffffff;
-  --bg-subtle: #eff2f0;
-  --border: #dde3df;
-  --border-strong: #c3ccc7;
-  --text: #070a08;
-  --text-muted: #48524d;
-  --text-faint: #66706b;
+  --paper-bg: #fcfcfa;
+  --paper-elevated: #ffffff;
+  --paper-subtle: #f1f1ec;
+  --paper-border: #d9d9d2;
+  --paper-border-strong: #b9b9b0;
+  --paper-text: #0b0d0c;
+  --paper-muted: #474f4b;
+  --paper-faint: #5f6763;
+  --paper-accent: #06693a;
+  --paper-accent-hover: #04552f;
+  --paper-accent-soft: rgba(6, 105, 58, 0.1);
+  --paper-accent-line: rgba(6, 105, 58, 0.42);
+  --paper-on-accent: #ffffff;
+  --paper-danger: #b53424;
+  --paper-danger-soft: rgba(181, 52, 36, 0.1);
+  --paper-dot: rgba(11, 13, 12, 0.08);
+  --paper-shadow: rgba(11, 13, 12, 0.14);
+  --ink-bg: #0a0c0b;
+  --ink-elevated: #111413;
+  --ink-subtle: #171b19;
+  --ink-border: #252b28;
+  --ink-border-strong: #37403c;
+  --ink-text: #f2f5f3;
+  --ink-muted: #a3ada8;
+  --ink-faint: #85908b;
+  --ink-accent: #3ddc84;
+  --ink-accent-hover: #6ee8a3;
+  --ink-accent-soft: rgba(61, 220, 132, 0.12);
+  --ink-accent-line: rgba(61, 220, 132, 0.42);
+  --ink-on-accent: #04120a;
+  --ink-danger: #f0705f;
+  --ink-danger-soft: rgba(240, 112, 95, 0.14);
+  --ink-dot: rgba(242, 245, 243, 0.08);
+  --ink-shadow: rgba(0, 0, 0, 0.55);
 
-  --accent: #087a41;
-  --accent-hover: #066533;
-  --accent-soft: rgba(8, 122, 65, 0.1);
-  --accent-line: rgba(8, 122, 65, 0.4);
-  --on-accent: #ffffff;
-
-  --danger: #c0392b;
-  --danger-soft: rgba(192, 57, 43, 0.1);
-
-  --nav-bg: rgba(250, 251, 250, 0.7);
-  --grid-dot: rgba(7, 10, 8, 0.07);
-  --shadow-tint: rgba(7, 10, 8, 0.1);
+  /* b = the page's base ground, a = the hard-cut ground */
+  --b-bg: var(--paper-bg);
+  --b-elevated: var(--paper-elevated);
+  --b-subtle: var(--paper-subtle);
+  --b-border: var(--paper-border);
+  --b-border-strong: var(--paper-border-strong);
+  --b-text: var(--paper-text);
+  --b-muted: var(--paper-muted);
+  --b-faint: var(--paper-faint);
+  --b-accent: var(--paper-accent);
+  --b-accent-hover: var(--paper-accent-hover);
+  --b-accent-soft: var(--paper-accent-soft);
+  --b-accent-line: var(--paper-accent-line);
+  --b-on-accent: var(--paper-on-accent);
+  --b-danger: var(--paper-danger);
+  --b-danger-soft: var(--paper-danger-soft);
+  --b-dot: var(--paper-dot);
+  --b-shadow: var(--paper-shadow);
+  --a-bg: var(--ink-bg);
+  --a-elevated: var(--ink-elevated);
+  --a-subtle: var(--ink-subtle);
+  --a-border: var(--ink-border);
+  --a-border-strong: var(--ink-border-strong);
+  --a-text: var(--ink-text);
+  --a-muted: var(--ink-muted);
+  --a-faint: var(--ink-faint);
+  --a-accent: var(--ink-accent);
+  --a-accent-hover: var(--ink-accent-hover);
+  --a-accent-soft: var(--ink-accent-soft);
+  --a-accent-line: var(--ink-accent-line);
+  --a-on-accent: var(--ink-on-accent);
+  --a-danger: var(--ink-danger);
+  --a-danger-soft: var(--ink-danger-soft);
+  --a-dot: var(--ink-dot);
+  --a-shadow: var(--ink-shadow);
 
   --font-heading: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --radius-card: 16px;
-  --radius-btn: 10px;
+  --radius-card: 6px;
+  --radius-btn: 6px;
   --radius-pill: 999px;
 
-  --section-space: clamp(5rem, 10vw, 9rem);
-  --container-width: 1200px;
+  --chapter-space: clamp(4rem, 8vw, 7rem);
+  --container-width: 1160px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --rail-width: 72px;
+  --strip-height: 52px;
   --header-height: 72px;
 
   color-scheme: light;
 }
 
-[data-theme="dark"] {
-  --bg: #060807;
-  --bg-elevated: #0e1110;
-  --bg-subtle: #151918;
-  --border: #212725;
-  --border-strong: #323a37;
-  --text: #f3f6f4;
-  --text-muted: #a0a9a5;
-  --text-faint: #7b8580;
-
-  --accent: #34d17f;
-  --accent-hover: #5be49b;
-  --accent-soft: rgba(52, 209, 127, 0.12);
-  --accent-line: rgba(52, 209, 127, 0.4);
-  --on-accent: #03120a;
-
-  --danger: #f0705f;
-  --danger-soft: rgba(240, 112, 95, 0.12);
-
-  --nav-bg: rgba(6, 8, 7, 0.7);
-  --grid-dot: rgba(243, 246, 244, 0.07);
-  --shadow-tint: rgba(0, 0, 0, 0.55);
-
+:root[data-theme="dark"] {
+  --b-bg: var(--ink-bg);
+  --b-elevated: var(--ink-elevated);
+  --b-subtle: var(--ink-subtle);
+  --b-border: var(--ink-border);
+  --b-border-strong: var(--ink-border-strong);
+  --b-text: var(--ink-text);
+  --b-muted: var(--ink-muted);
+  --b-faint: var(--ink-faint);
+  --b-accent: var(--ink-accent);
+  --b-accent-hover: var(--ink-accent-hover);
+  --b-accent-soft: var(--ink-accent-soft);
+  --b-accent-line: var(--ink-accent-line);
+  --b-on-accent: var(--ink-on-accent);
+  --b-danger: var(--ink-danger);
+  --b-danger-soft: var(--ink-danger-soft);
+  --b-dot: var(--ink-dot);
+  --b-shadow: var(--ink-shadow);
+  --a-bg: var(--paper-bg);
+  --a-elevated: var(--paper-elevated);
+  --a-subtle: var(--paper-subtle);
+  --a-border: var(--paper-border);
+  --a-border-strong: var(--paper-border-strong);
+  --a-text: var(--paper-text);
+  --a-muted: var(--paper-muted);
+  --a-faint: var(--paper-faint);
+  --a-accent: var(--paper-accent);
+  --a-accent-hover: var(--paper-accent-hover);
+  --a-accent-soft: var(--paper-accent-soft);
+  --a-accent-line: var(--paper-accent-line);
+  --a-on-accent: var(--paper-on-accent);
+  --a-danger: var(--paper-danger);
+  --a-danger-soft: var(--paper-danger-soft);
+  --a-dot: var(--paper-dot);
+  --a-shadow: var(--paper-shadow);
   color-scheme: dark;
+}
+
+[data-ground="base"],
+[data-ground="subtle"] {
+  --bg: var(--b-bg);
+  --bg-elevated: var(--b-elevated);
+  --bg-subtle: var(--b-subtle);
+  --border: var(--b-border);
+  --border-strong: var(--b-border-strong);
+  --text: var(--b-text);
+  --text-muted: var(--b-muted);
+  --text-faint: var(--b-faint);
+  --accent: var(--b-accent);
+  --accent-hover: var(--b-accent-hover);
+  --accent-soft: var(--b-accent-soft);
+  --accent-line: var(--b-accent-line);
+  --on-accent: var(--b-on-accent);
+  --danger: var(--b-danger);
+  --danger-soft: var(--b-danger-soft);
+  --dot: var(--b-dot);
+  --shadow: var(--b-shadow);
+  --shadow-tint: var(--b-shadow);
+}
+
+[data-ground="alt"] {
+  --bg: var(--a-bg);
+  --bg-elevated: var(--a-elevated);
+  --bg-subtle: var(--a-subtle);
+  --border: var(--a-border);
+  --border-strong: var(--a-border-strong);
+  --text: var(--a-text);
+  --text-muted: var(--a-muted);
+  --text-faint: var(--a-faint);
+  --accent: var(--a-accent);
+  --accent-hover: var(--a-accent-hover);
+  --accent-soft: var(--a-accent-soft);
+  --accent-line: var(--a-accent-line);
+  --on-accent: var(--a-on-accent);
+  --danger: var(--a-danger);
+  --danger-soft: var(--a-danger-soft);
+  --dot: var(--a-dot);
+  --shadow: var(--a-shadow);
+  --shadow-tint: var(--a-shadow);
+}
+
+/* A subtle chapter sits on the tinted paper; chips and fields lift to white */
+[data-ground="subtle"] {
+  --bg: var(--b-subtle);
+  --bg-subtle: var(--b-elevated);
+}
+
+/* Always-ink and always-paper surfaces (the terminal, the seal) */
+.ground-ink,
+.ground-paper {
+  color: var(--text);
+}
+
+.ground-ink {
+  --bg: var(--ink-bg);
+  --bg-elevated: var(--ink-elevated);
+  --bg-subtle: var(--ink-subtle);
+  --border: var(--ink-border);
+  --border-strong: var(--ink-border-strong);
+  --text: var(--ink-text);
+  --text-muted: var(--ink-muted);
+  --text-faint: var(--ink-faint);
+  --accent: var(--ink-accent);
+  --accent-hover: var(--ink-accent-hover);
+  --accent-soft: var(--ink-accent-soft);
+  --accent-line: var(--ink-accent-line);
+  --on-accent: var(--ink-on-accent);
+  --danger: var(--ink-danger);
+  --danger-soft: var(--ink-danger-soft);
+  --dot: var(--ink-dot);
+  --shadow: var(--ink-shadow);
+  --shadow-tint: var(--ink-shadow);
+}
+
+.ground-paper {
+  --bg: var(--paper-bg);
+  --bg-elevated: var(--paper-elevated);
+  --bg-subtle: var(--paper-subtle);
+  --border: var(--paper-border);
+  --border-strong: var(--paper-border-strong);
+  --text: var(--paper-text);
+  --text-muted: var(--paper-muted);
+  --text-faint: var(--paper-faint);
+  --accent: var(--paper-accent);
+  --accent-hover: var(--paper-accent-hover);
+  --accent-soft: var(--paper-accent-soft);
+  --accent-line: var(--paper-accent-line);
+  --on-accent: var(--paper-on-accent);
+  --danger: var(--paper-danger);
+  --danger-soft: var(--paper-danger-soft);
+  --dot: var(--paper-dot);
+  --shadow: var(--paper-shadow);
+  --shadow-tint: var(--paper-shadow);
 }
 
 * {
@@ -81,20 +243,19 @@ body {
   color: var(--text);
   font-size: 1.0625rem;
   line-height: 1.7;
-  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
 }
 
-/* Grain: fixed, pointer-less, never part of the scrolling layer */
+/* Paper grain: fixed and pointer-less, never part of the scrolling layer */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 60;
-  opacity: 0.025;
+  opacity: 0.022;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -129,11 +290,7 @@ button {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 4px;
-}
-
-section[id] {
-  scroll-margin-top: calc(var(--header-height) - 1px);
+  border-radius: 2px;
 }
 
 h1,
@@ -183,36 +340,21 @@ h3 {
   width: 100%;
 }
 
-/* Half above, half below: neighbouring sections add up to one --section-space */
-.section {
-  position: relative;
-  padding: calc(var(--section-space) / 2) 0;
-}
-
-/* "// 02 — SKILLS" */
-.eyebrow {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.1rem;
+/* The rail takes the left margin on wide screens */
+@media (min-width: 1100px) {
+  .app {
+    padding-left: var(--rail-width);
+  }
 }
 
 .section-title {
-  font-size: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
-  letter-spacing: -0.025em;
+  font-size: clamp(2rem, 3vw + 0.6rem, 3.1rem);
+  letter-spacing: -0.03em;
   max-width: 20ch;
 }
 
-.section-head {
-  margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
-}
-
 .lead {
-  max-width: 65ch;
+  max-width: 62ch;
   color: var(--text-muted);
 }
 
@@ -231,10 +373,8 @@ h3 {
   font-size: 0.95rem;
   border: 1px solid transparent;
   border-radius: var(--radius-btn);
-  transition: transform 0.3s var(--ease-out),
-    background-color 0.3s var(--ease-out),
-    border-color 0.3s var(--ease-out),
-    color 0.3s var(--ease-out);
+  transition: transform 0.3s var(--ease-out), background-color 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
 }
 
 .btn-label {
@@ -308,69 +448,32 @@ h3 {
   border-color: var(--accent);
 }
 
-/* Cards: hairline border shifts toward the accent and lifts 2px on hover */
-.card {
-  position: relative;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  transition: border-color 0.3s var(--ease-out),
-    transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
-}
-
-.card:hover {
-  border-color: var(--accent-line);
-  transform: translateY(-2px);
-  box-shadow: 0 18px 40px -22px var(--shadow-tint);
-}
-
-/* Pills */
-.chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.42rem 0.85rem;
-  font-size: 0.875rem;
-  line-height: 1.2;
-  color: var(--text);
-  background: var(--bg-subtle);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  transition: transform 0.25s var(--ease-out),
-    border-color 0.25s var(--ease-out);
-}
-
-.chip:hover {
-  transform: translateY(-1px);
-  border-color: var(--accent-line);
-}
-
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.7rem;
+  padding: 0.22rem 0.65rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-pill);
 }
 
-/* Icons: monochrome until hovered; brand logos then take their own color */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Brand logos stay monochrome until hovered, then take their brand color */
 .skill-icon {
   flex-shrink: 0;
   color: var(--text-muted);
   transition: color 0.25s var(--ease-out);
 }
 
-.chip:hover .skill-icon,
-.card:hover > .skill-icon,
-.logo-marquee-item:hover .skill-icon {
-  color: var(--accent);
-}
-
-.chip:hover .skill-icon.is-brand,
-.logo-marquee-item:hover .skill-icon.is-brand {
+.skill-icon.is-brand:hover,
+.ledger-row:hover .skill-icon.is-brand {
   color: var(--brand);
 }
 

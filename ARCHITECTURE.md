@@ -2,61 +2,70 @@
 
 ## Overview
 
-Client-only SPA (no backend). Navigation uses hash anchors (`#about`, `#skills`, `#experience`,
-`#ai-testing`, `#contact`; `#process` and `#credentials` are scroll-only sections).
-Unknown paths render the in-app 404 (`NotFound`), and the build copies `index.html` to `404.html`.
+Client-only SPA (no backend). Navigation uses hash anchors to twelve chapters. Unknown paths render
+the in-app 404 (`NotFound`), and the build copies `index.html` to `404.html`.
 
 ```
 Browser
   └── Vite SPA (React)
-        ├── Navbar (nav, theme toggle, resume, mobile overlay)
-        ├── Hero (+ TestRunner illustration) → Stats
-        ├── About → Skills → Experience → AITesting → Process → Credentials → Initiative → Contact
-        ├── Footer
-        └── portfolioData.js (content source of truth)
+        └── AuditProvider            owns the self-audit state (re-renders only its consumers)
+              ├── RunRail            margin rail (desktop) / status strip + sheet (mobile); the navigation
+              ├── RunLine            the sweep line, retires when the report is complete
+              ├── Chapters           TC-00 Title page ... TC-11 Contact, each wrapped in <Chapter>
+              └── Footer             colophon; status line reports the real run
 ```
+
+## The self-audit
+
+- `src/audit/chapters.js`: ordered chapter registry (id, TC number, label)
+- `src/audit/checks.js`: the real checks, run against one chapter's live DOM. Async and sliced
+  into short tasks that yield to the main thread; backgrounds are cached per run
+- `src/hooks/useSelfAudit.js`: the state machine. Two IntersectionObservers: one fires when a
+  chapter header crosses the run line (38% of the viewport), one catches jumps that skip a header.
+  Reaching the Result chapter runs every remaining chapter, so the seal is truthful. LCP is frozen
+  at the first user input, like the browser's own definition. Reduced motion skips the sweep
+- `src/audit/AuditProvider.jsx` + `AuditContext.js`: state lives here, not in `App`
+- `src/components/Chapter.jsx`: numbered header, filling rule, stamp, expandable check list
 
 ## Folder structure
 
 ```
 src/
-  assets/           Resume PDF, optimized portrait and banner WebP (responsive srcset)
-  components/       One component per section, with co-located CSS
-    Illustrations   Inline-SVG: MagnifierBug, PipelineDiagram, ChatProbe
-    TestRunner      Hero terminal illustration (typewriter + coverage ring)
-    Initiative      "Keep the Earth Green" banner band, shown before Contact
-    Reveal          Scroll reveal (CSS animation + one shared IntersectionObserver)
-    SkillIcon       Renders an icon by key; registry lives in skillIcons.js
-  data/             portfolioData.js
-  hooks/            useTheme, usePrefersReducedMotion
-  index.css         Tokens, typography, buttons, cards, chips, utilities
-public/             favicon.svg (IK monogram), robots.txt, samples/
+  assets/        Resume PDF, optimized portrait and banner WebP
+  audit/         chapters, checks, provider and context
+  components/    One component per chapter, with co-located CSS
+    Result       The peak: sticky stage; sentinel elements drive the line-by-line print
+    Illustrations  Inline SVG: MagnifierBug, PipelineDiagram, ChatProbe
+    TestRunner   Title-page terminal (typewriter + coverage ring), always on the ink ground
+    Reveal       CSS reveal driven by one shared IntersectionObserver
+  data/          portfolioData.js
+  hooks/         useSelfAudit, useTheme, usePrefersReducedMotion
+  index.css      Tokens (paper / ink grounds), base, buttons, utilities
+scrollcraft/     Design record: BRIEF.md, contact sheets, fingerprint registry
 ```
 
 ## Design system
 
-- Tokens in `src/index.css`: `--bg*`, `--text*`, `--border*`, `--accent*`, `--danger*`, radii, spacing.
-  Components reference tokens only; no hard-coded colors (brand-hover colors live in `skillIcons.js`).
-- Radii: cards 16px, buttons 10px, chips 999px. Container max 1200px.
-- Section spacing is `--section-space`, split half above / half below so neighbouring sections add up to one.
+- Two grounds, `paper` and `ink`. `data-ground="base|subtle|alt"` on a chapter resolves to one of them;
+  the theme toggle swaps which is the base. `.ground-ink` / `.ground-paper` force a ground (terminal, seal)
+- Chapters are separated by hard cuts of ground plus a ruled header, never gradients
+- Radii are small (6px); structure comes from rules, not boxes. Mono for IDs, labels and figures
 
 ## Motion
 
-Scroll reveals are CSS keyframes (`Reveal.css`) triggered by a single IntersectionObserver.
-Framer Motion handles the mobile menu, copy toast, magnetic buttons and the 404 trace.
-All of it is disabled or simplified under `prefers-reduced-motion`.
+Reveals are CSS keyframes. The run line, stamps and Result print are the only scroll-linked motion; all
+of it is removed under `prefers-reduced-motion`.
 
 ## Theming
 
-1. Inline script in `index.html` sets `data-theme` before paint: stored choice, else system preference, else dark.
-2. `useTheme` syncs React state and `localStorage` (failures are swallowed).
-3. Sun/moon toggle in the navbar.
+1. Inline script in `index.html` sets `data-theme` before paint: stored choice, else system, else dark.
+2. `useTheme` syncs React state and `localStorage` (failures swallowed).
 
 ## Deployment
 
-- Static: `npm run build` → serve `dist/`
-- Container: `docker compose up --build` → nginx on port 8080
+- Static: `npm run build` then serve `dist/`
+- Container: `docker compose up --build` (nginx on 8080)
 
 ## Out of scope
 
-No JWT, rate limiting, server-side forms, or backend. Contact is mailto / tel / social links plus copy-to-clipboard.
+No backend, no contact form. Contact is mailto, tel, LinkedIn and copy-to-clipboard.

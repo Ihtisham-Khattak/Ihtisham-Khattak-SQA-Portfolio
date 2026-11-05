@@ -259,4 +259,84 @@ export const portfolioData = {
       meta: "",
     },
   ],
+
+  // Test-case results. Interim content restored from the original site;
+  // replace with the final project write-ups. Field mapping for the report:
+  //   description = what was tested, details.problem = what broke,
+  //   details.approach = what was fixed, details.outcome = result.
+  projects: [
+    {
+      "id": "automation-testing-framework",
+      "title": "Automation Testing Framework",
+      "category": "Automation",
+      "domain": "Release regression",
+      "role": "Senior SQA Engineer",
+      "impact": "3 days → 4 hours",
+      "description": "Modular Cypress E2E framework that replaced multi-day manual regression.",
+      "techStack": [
+        "Cypress",
+        "JavaScript",
+        "GitHub Actions"
+      ],
+      "details": {
+        "problem": "Manual regression took 3 days per release.",
+        "approach": "Modular Cypress suite, page objects, and a CI job the release waits on.",
+        "outcome": "Runtime dropped to 4 hours. Coverage rose ~60%."
+      },
+      "link": "",
+      "private": true
+    },
+    {
+      "id": "cypress-ecommerce-suite",
+      "title": "Cypress E-Commerce Suite",
+      "category": "Automation",
+      "domain": "Commerce",
+      "role": "Author",
+      "impact": "Cart & checkout covered",
+      "description": "POM-based Cypress suite for critical commerce flows, with Allure reporting.",
+      "techStack": [
+        "Cypress",
+        "POM",
+        "Allure"
+      ],
+      "details": {
+        "problem": "Manual e-commerce checks were inconsistent and slow.",
+        "approach": "Page objects around cart and checkout, with Allure for failure evidence.",
+        "outcome": "Reliable regression on cart and checkout, with visible failure reports."
+      },
+      "link": "https://github.com/Ihtisham-Khattak/cypress_commerce"
+    },
+    {
+      "id": "k6-api-testing",
+      "title": "k6 API Testing",
+      "category": "Performance",
+      "domain": "API load",
+      "role": "Author",
+      "impact": "Thresholds as gates",
+      "description": "Smoke, load, and stress suites that fail the build when latency or errors break.",
+      "techStack": [
+        "k6",
+        "JavaScript"
+      ],
+      "details": {
+        "problem": "APIs hid bottlenecks until production traffic arrived.",
+        "approach": "k6 profiles for smoke, load, and stress, with thresholds that fail CI.",
+        "outcome": "Load profiles with pass/fail thresholds, ready for CI reuse."
+      },
+      "link": "https://github.com/Ihtisham-Khattak/k6_testing"
+    }
+  ],
+
+  testimonials: [
+    {
+      "name": "Tahir Nazir",
+      "role": "Senior Fullstack Developer",
+      "feedback": "Ihtisham doesn't just find bugs; he helps us understand the root cause. His automation scripts saved us countless hours."
+    },
+    {
+      "name": "Cristina",
+      "role": "Product Manager",
+      "feedback": "Reliable, thorough, and communicative. Ihtisham ensures that what we ship meets the highest quality standards."
+    }
+  ],
 };

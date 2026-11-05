@@ -21,7 +21,7 @@ function CoverageRing({ active }) {
   const radius = 22;
   const circumference = 2 * Math.PI * radius;
   return (
-    <div className="coverage-card" aria-hidden="true">
+    <div className="coverage-card ground-ink" aria-hidden="true">
       <svg viewBox="0 0 56 56" width="56" height="56">
         <circle className="ring-track" cx="28" cy="28" r={radius} />
         <circle
@@ -76,7 +76,7 @@ function TestRunnerInner() {
 
   return (
     <div className="test-runner">
-      <div className="runner-card">
+      <div className="runner-card ground-ink">
         <div className="runner-bar">
           <span className="runner-dots" aria-hidden="true">
             <i />

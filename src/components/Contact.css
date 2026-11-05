@@ -1,21 +1,20 @@
-.contact {
+.chapter-contact {
   padding-bottom: clamp(4rem, 8vw, 6rem);
 }
 
-.contact-head {
+.signoff {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  align-items: flex-start;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .contact-title {
-  max-width: 18ch;
+  max-width: 16ch;
   margin-bottom: 2rem;
-  font-size: clamp(2.25rem, 4.5vw + 0.5rem, 4rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.3rem, 4.6vw + 0.5rem, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
 }
 
 .contact-title em {
@@ -23,22 +22,20 @@
   color: var(--accent);
 }
 
+/* The email is set as a running line, with copy as a quiet affordance */
 .contact-email {
   display: inline-flex;
   align-items: center;
   gap: 1rem;
   max-width: 100%;
   min-height: 56px;
-  padding: 0.75rem 1.4rem;
+  padding: 0.5rem 0;
   font-family: var(--font-mono);
-  font-size: clamp(0.95rem, 1.4vw + 0.55rem, 1.35rem);
+  font-size: clamp(1rem, 1.5vw + 0.55rem, 1.5rem);
   font-weight: 500;
   color: var(--text);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-btn);
-  transition: border-color 0.25s var(--ease-out),
-    background-color 0.25s var(--ease-out), transform 0.2s var(--ease-out);
+  border-bottom: 2px solid var(--text);
+  transition: color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
 }
 
 .contact-email > span:first-child {
@@ -48,12 +45,8 @@
 }
 
 .contact-email:hover {
+  color: var(--accent);
   border-color: var(--accent);
-  background: var(--accent-soft);
-}
-
-.contact-email:active {
-  transform: translateY(1px) scale(0.99);
 }
 
 .contact-copy {
@@ -64,7 +57,6 @@
 
 .contact-toast {
   display: flex;
-  justify-content: center;
   min-height: 2rem;
   margin-top: 0.75rem;
 }
@@ -88,75 +80,47 @@
   border-color: var(--danger);
 }
 
-.contact-grid {
+.sign-block {
+  max-width: 44rem;
+  border-top: 1px solid var(--text);
+}
+
+.sign-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 1rem;
-  max-width: 52rem;
-  margin: 0 auto;
+  gap: 0.15rem 1.5rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--border-strong);
 }
 
-.contact-card {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  height: 100%;
-  min-height: 84px;
-  padding: 1.1rem 1.25rem;
-}
-
-.contact-card.is-static:hover {
-  transform: none;
-  border-color: var(--border);
-  box-shadow: none;
-}
-
-.contact-icon {
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-line);
-  border-radius: 12px;
-}
-
-.contact-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  flex: 1;
-}
-
-.contact-label {
+.sign-row dt {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--text-muted);
 }
 
-.contact-value {
+.sign-row dd {
+  margin: 0;
   overflow-wrap: anywhere;
-  font-size: 0.95rem;
-  color: var(--text);
 }
 
-.contact-arrow {
-  flex-shrink: 0;
-  color: var(--text-faint);
-  transition: color 0.25s var(--ease-out), transform 0.3s var(--ease-out);
+.sign-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+  transition: color 0.25s var(--ease-out);
 }
 
-a.contact-card:hover .contact-arrow {
+.sign-row a:hover {
   color: var(--accent);
-  transform: translate(2px, -2px);
 }
 
 @media (min-width: 640px) {
-  .contact-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .sign-row {
+    grid-template-columns: 8rem minmax(0, 1fr);
+    align-items: baseline;
   }
 }

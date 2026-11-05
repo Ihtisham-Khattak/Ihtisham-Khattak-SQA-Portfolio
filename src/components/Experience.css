@@ -1,149 +1,97 @@
-.timeline {
-  position: relative;
+.log-head {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* A commit log: dates in the margin column, entries ruled, newest first */
+.log {
+  border-top: 1px solid var(--text);
+}
+
+.log-entry {
   display: grid;
-  gap: 1.5rem;
-  padding-left: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem 2.5rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+  border-bottom: 1px solid var(--border-strong);
 }
 
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 0.4rem;
-  bottom: 0.4rem;
-  width: 1px;
-  background: var(--border-strong);
-}
-
-.timeline-item {
-  position: relative;
-}
-
-.timeline-node {
-  position: absolute;
-  left: calc(-2rem + 0.5px);
-  top: 1.7rem;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--accent-line);
-}
-
-.timeline-item.is-current .timeline-node {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.timeline-item.is-current .timeline-node::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1px solid var(--accent);
-  opacity: 0;
-  animation: status-ping 2.4s var(--ease-out) infinite;
-}
-
-.timeline-card {
-  padding: clamp(1.25rem, 3vw, 2rem);
-}
-
-.timeline-item.is-current .timeline-card {
-  border-color: var(--accent-line);
-}
-
-.timeline-head {
+.log-dates {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: flex-start;
-  gap: 0.9rem 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.timeline-head h3 {
-  font-size: clamp(1.2rem, 1.2vw + 0.9rem, 1.5rem);
-  margin-bottom: 0.35rem;
-  max-width: 28ch;
-}
-
-.timeline-company {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-
-.timeline-dates {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
 }
 
-.timeline-range,
-.timeline-badge {
+.log-range,
+.log-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.3rem 0.75rem;
+  padding: 0.25rem 0.7rem;
   border-radius: var(--radius-pill);
 }
 
-.timeline-range {
-  color: var(--text-muted);
+.log-range {
+  color: var(--text);
   background: var(--bg-subtle);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
 }
 
-.timeline-badge {
+.log-badge {
   color: var(--accent);
   background: var(--accent-soft);
   border: 1px solid var(--accent-line);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.timeline-badge .status-dot {
+.log-badge .status-dot {
   width: 6px;
   height: 6px;
 }
 
-.timeline-points {
-  display: grid;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
+.log-body h3 {
+  font-size: clamp(1.25rem, 1.4vw + 0.9rem, 1.65rem);
+  margin-bottom: 0.35rem;
+  max-width: 30ch;
 }
 
-.timeline-points li {
+.log-company {
+  margin-bottom: 1.25rem;
+  font-size: 0.97rem;
+  color: var(--text-muted);
+}
+
+.log-points {
+  display: grid;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.log-points li {
   display: grid;
   grid-template-columns: 16px minmax(0, 1fr);
   gap: 0.75rem;
   font-size: 0.97rem;
   line-height: 1.6;
   color: var(--text-muted);
+  max-width: 62ch;
 }
 
-.timeline-points svg {
+.log-points svg {
   margin-top: 0.28em;
   color: var(--accent);
 }
 
-.timeline-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-@media (min-width: 768px) {
-  .timeline {
-    padding-left: 2.75rem;
+@media (min-width: 860px) {
+  .log-entry {
+    grid-template-columns: 12rem minmax(0, 1fr);
   }
 
-  .timeline-node {
-    left: calc(-2.75rem + 0.5px);
+  .log-dates {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

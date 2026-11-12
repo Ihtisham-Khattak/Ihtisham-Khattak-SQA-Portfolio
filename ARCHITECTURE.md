@@ -36,6 +36,7 @@ src/
   components/    One component per chapter, with co-located CSS
     Result       The peak: sticky stage; sentinel elements drive the line-by-line print
     Illustrations  Inline SVG: MagnifierBug, PipelineDiagram, ChatProbe
+    Projects     Scroll-snap carousel of project cards (buttons, keys, live counter)
     TestRunner   Title-page terminal (typewriter + coverage ring), always on the ink ground
     Reveal       CSS reveal driven by one shared IntersectionObserver
   data/          portfolioData.js

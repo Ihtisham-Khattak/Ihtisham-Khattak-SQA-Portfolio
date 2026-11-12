@@ -1,106 +1,74 @@
 .chapter {
   position: relative;
+  isolation: isolate;
   padding: var(--chapter-space) 0;
-  background-color: var(--bg);
   color: var(--text);
-  scroll-margin-top: calc(var(--strip-height) - 1px);
+  scroll-margin-top: calc(var(--nav-offset) - 8px);
 }
 
-@media (min-width: 1100px) {
-  .chapter {
-    scroll-margin-top: 0;
-  }
+/* A soft glow bleeds in from the left edge of every section */
+.chapter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(36rem 34rem at -6% 32%, var(--glow), transparent 70%);
 }
 
 .chapter-head {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-top: 1rem;
+  margin-bottom: 1.4rem;
 }
 
-/* The top rule: dashed while unverified, fills with accent as the run line passes */
-.chapter-rule {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--border-strong) 0 7px,
-    transparent 7px 13px
-  );
-  overflow: hidden;
+.chapter-head.is-title {
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
 }
 
-.chapter-rule::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left center;
+/* The pill's dot doubles as the verification state */
+.pill-dot[data-state="unverified"] {
+  background: transparent;
+  box-shadow: none;
+  border: 1.5px dashed var(--text-faint);
 }
 
-.chapter[data-state="running"] .chapter-rule::after {
-  animation: rule-run 0.7s linear forwards;
+.pill-dot[data-state="running"] {
+  animation: dot-run 0.7s ease-in-out infinite alternate;
 }
 
-.chapter[data-state="passed"] .chapter-rule::after {
-  transform: scaleX(1);
-}
-
-.chapter[data-state="failed"] .chapter-rule::after {
+.pill-dot[data-state="failed"] {
   background: var(--danger);
-  transform: scaleX(1);
+  box-shadow: 0 0 10px var(--danger);
 }
 
-@keyframes rule-run {
+@keyframes dot-run {
   to {
-    transform: scaleX(1);
+    opacity: 0.3;
   }
 }
 
-.chapter-id {
-  display: flex;
-  align-items: baseline;
-  gap: 0.85rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.chapter-tc {
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.chapter-name {
-  color: var(--text-muted);
-}
-
-/* Stamp */
+/* Stamp: a small status pill */
 .stamp {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  min-height: 36px;
-  padding: 0.3rem 0.8rem;
+  gap: 0.4rem;
+  min-height: 32px;
+  padding: 0.25rem 0.75rem;
   overflow: hidden;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
   background: var(--bg);
-  border: 1.5px dashed var(--border-strong);
-  border-radius: 4px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-pill);
   transition: color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
 }
 
@@ -112,11 +80,7 @@
   position: absolute;
   inset: 0;
   opacity: 0.5;
-  background: repeating-linear-gradient(
-    135deg,
-    var(--border) 0 2px,
-    transparent 2px 7px
-  );
+  background: repeating-linear-gradient(135deg, var(--border) 0 2px, transparent 2px 7px);
 }
 
 .stamp > :not(.stamp-hatch) {
@@ -124,16 +88,12 @@
 }
 
 .stamp[data-state="running"] {
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
+  color: var(--accent-text);
+  border: 1px solid var(--accent);
 }
 
 .stamp[data-state="running"] .stamp-hatch {
-  background: repeating-linear-gradient(
-    135deg,
-    var(--accent-soft) 0 3px,
-    transparent 3px 8px
-  );
+  background: repeating-linear-gradient(135deg, var(--accent-soft) 0 3px, transparent 3px 8px);
   background-size: 22px 22px;
   animation: hatch-run 0.7s linear infinite;
 }
@@ -145,8 +105,8 @@
 }
 
 .stamp[data-state="passed"] {
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
+  color: var(--accent-text);
+  border: 1px solid var(--accent-line);
   background: var(--accent-soft);
   animation: stamp-down 0.32s var(--ease-out) both;
 }
@@ -158,7 +118,7 @@
 
 .stamp[data-state="failed"] {
   color: var(--danger);
-  border: 1.5px solid var(--danger);
+  border: 1px solid var(--danger);
   background: var(--danger-soft);
   animation: stamp-down 0.32s var(--ease-out) both;
 }
@@ -166,21 +126,21 @@
 @keyframes stamp-down {
   from {
     opacity: 0;
-    transform: scale(1.25) rotate(-3deg);
+    transform: translateY(-6px) rotate(-3deg);
   }
   to {
     opacity: 1;
-    transform: scale(1) rotate(0);
+    transform: none;
   }
 }
 
 /* The real checks behind a stamp */
 .chapter-checks {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
+  margin-bottom: 1.6rem;
+  padding: 0.75rem 1.1rem;
   background: var(--bg-elevated);
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius-card);
+  border-radius: 16px;
 }
 
 .chapter-checks ul {
@@ -203,7 +163,7 @@
 }
 
 .check-mark {
-  color: var(--accent);
+  color: var(--accent-text);
   font-weight: 700;
 }
 
@@ -225,10 +185,6 @@ li[data-pass="false"] .check-detail {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-muted);
-}
-
-.chapter-body {
-  margin-top: clamp(2rem, 4vw, 3rem);
 }
 
 @media (max-width: 640px) {

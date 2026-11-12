@@ -1,52 +1,56 @@
-import { Check } from "lucide-react";
-import Chapter from "./Chapter";
+import { Briefcase, Check } from "lucide-react";
+import Chapter, { SecTitle } from "./Chapter";
 import { Reveal } from "./Reveal";
 import "./Experience.css";
 
 const Experience = ({ data }) => (
-  <Chapter id="experience" ground="subtle" labelledBy="experience-title">
-    <Reveal className="log-head">
-      <h2 id="experience-title" className="section-title">
-        Where I&apos;ve shipped quality
-      </h2>
+  <Chapter id="experience" labelledBy="experience-title">
+    <Reveal className="sec-head">
+      <SecTitle id="experience-title" lead="Where I’ve shipped" tail="quality" />
     </Reveal>
 
-    <ol className="log">
+    <ol className="roles">
       {data.map((job, index) => (
         <Reveal
           as="li"
           key={`${job.company}-${job.role}`}
-          className={`log-entry ${job.current ? "is-current" : ""}`}
-          delay={index * 0.06}
+          className={`bezel role ${job.current ? "is-current" : ""}`}
+          delay={index * 0.07}
         >
-          <p className="log-dates">
-            {job.current && (
-              <span className="log-badge">
-                <span className="status-dot" aria-hidden="true" />
-                Current
+          <article className="bezel-in role-in">
+            <header className="role-head">
+              <span className="icon-circle">
+                <Briefcase size={18} strokeWidth={1.7} aria-hidden="true" />
               </span>
-            )}
-            <span className="log-range">{job.duration}</span>
-          </p>
+              <p className="label-caps role-dates">
+                {job.current && (
+                  <span className="role-now">
+                    <span className="status-dot" aria-hidden="true" />
+                    Current
+                    <span aria-hidden="true"> · </span>
+                  </span>
+                )}
+                {job.duration}
+              </p>
+            </header>
 
-          <article className="log-body">
-            <h3>{job.role}</h3>
-            <p className="log-company">
+            <h3 className="role-title">{job.role}</h3>
+            <p className="role-company">
               {job.company}
               <span aria-hidden="true"> / </span>
               {job.location}
             </p>
 
-            <ul className="log-points">
+            <ul className="checks-list">
               {job.highlights.map((point) => (
                 <li key={point}>
-                  <Check size={16} strokeWidth={2.25} aria-hidden="true" />
+                  <Check size={15} strokeWidth={2.4} aria-hidden="true" />
                   {point}
                 </li>
               ))}
             </ul>
 
-            <ul className="chips" aria-label="Technologies">
+            <ul className="chips role-tags" aria-label="Technologies">
               {job.tags.map((tag) => (
                 <li key={tag} className="tag">
                   {tag}

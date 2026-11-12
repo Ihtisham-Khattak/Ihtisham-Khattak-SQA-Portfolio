@@ -61,10 +61,16 @@ All copy lives in [`src/data/portfolioData.js`](src/data/portfolioData.js); comp
 | `testimonials` | Testimonials |
 | `credentials`, `initiative` | Credentials and the "Keep the Earth Green" banner (alt text) |
 
-**Projects are test cases.** Field mapping: `description` = what was tested, `details.problem` =
-what broke, `details.approach` = what was fixed, `details.outcome` = the result, `impact` = the
-headline number. The current three projects are interim content restored from the original site;
-replace them with the final write-ups.
+**Projects** are a carousel of cards (swipe, scroll, arrow keys, or the buttons; no autoplay). A project
+shows one of two bodies:
+
+- a test-case story: `details.problem` (broke), `details.approach` (fixed), `details.outcome` (result)
+  and `impact` as the headline figure, or
+- plain facts: `facts` (platform, tooling, approach) and `headline` (for example "Tested with / Playwright MCP").
+
+Other fields: `description` (what was tested), `platform` (`web` or `mobile`, picks the icon), `techStack`
+(tags), `role` (optional), `link` (empty or `private: true` shows "Available on request"). Add the story
+fields to any project later and its card switches to the test-case layout.
 
 Skills show a "seen in" company only when an experience tag names that skill (see `Skills.jsx`).
 Skill icon keys map to icons in [`src/components/skillIcons.js`](src/components/skillIcons.js).

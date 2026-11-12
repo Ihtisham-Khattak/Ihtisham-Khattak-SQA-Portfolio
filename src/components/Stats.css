@@ -2,24 +2,49 @@
   padding-top: calc(var(--chapter-space) / 2);
 }
 
-/* Figures set like a results table: ruled, left-aligned, no boxes */
+/* Glowing frame under the terminal, like the reference's video block */
+.showcase {
+  position: relative;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: 1rem;
+}
+
+.showcase::after {
+  content: "";
+  position: absolute;
+  inset: 10% 0 -18%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(60% 55% at 50% 70%, var(--accent-line), transparent 72%);
+  opacity: 0.45;
+  filter: blur(36px);
+}
+
+.showcase .test-runner {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.showcase .runner-body {
+  min-height: 17rem;
+  font-size: 0.86rem;
+}
+
 .stats-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--text);
-  border-bottom: 1px solid var(--border-strong);
+  padding: 0;
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(0.75rem, 2vw, 1.5rem) clamp(1.25rem, 3vw, 2rem) 0;
+  gap: 0.55rem;
+  padding: clamp(1.25rem, 3vw, 1.9rem);
   border-bottom: 1px solid var(--border);
 }
 
 .stat:nth-child(even) {
-  padding-left: clamp(0.75rem, 2vw, 1.5rem);
   border-left: 1px solid var(--border);
 }
 
@@ -29,17 +54,17 @@
 
 .stat-value {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 3.5vw + 1rem, 4rem);
-  font-weight: 600;
+  font-size: clamp(2.3rem, 3vw + 1rem, 3.4rem);
+  font-weight: 400;
   line-height: 1;
   letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
-  font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   line-height: 1.5;
   color: var(--text-muted);
@@ -53,13 +78,11 @@
   .stat,
   .stat:nth-child(even),
   .stat:nth-last-child(-n + 2) {
-    padding-left: clamp(0.75rem, 2vw, 1.5rem);
     border-bottom: none;
     border-left: 1px solid var(--border);
   }
 
   .stat:first-child {
-    padding-left: 0;
     border-left: none;
   }
 }

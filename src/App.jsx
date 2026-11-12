@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { portfolioData } from "./data/portfolioData";
 import { useTheme } from "./hooks/useTheme";
 import AuditProvider from "./audit/AuditProvider";
-import RunRail from "./components/RunRail";
-import RunLine from "./components/RunLine";
+import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
 import About from "./components/About";
@@ -25,7 +24,7 @@ function isHomePath(pathname = window.location.pathname) {
 }
 
 function App() {
-  const { theme, toggleTheme, isDark } = useTheme();
+  const { theme, setTheme, isDark } = useTheme();
   const [isNotFound, setIsNotFound] = useState(
     () => typeof window !== "undefined" && !isHomePath()
   );
@@ -57,14 +56,13 @@ function App() {
         <a href={isNotFound ? "#not-found-title" : "#main-content"} className="skip-link">
           Skip to content
         </a>
-        <RunRail theme={theme} onToggleTheme={toggleTheme} isNotFound={isNotFound} />
-        {!isNotFound && <RunLine />}
+        <Navbar isNotFound={isNotFound} />
         <main id="main-content">
           {isNotFound ? (
             <NotFound />
           ) : (
             <>
-              <Hero data={hero} personal={personal} />
+              <Hero data={hero} personal={personal} portraitAlt={about.portraitAlt} />
               <Stats data={stats} />
               <About data={about} />
               <Skills data={skills} experience={experience} />
@@ -79,7 +77,7 @@ function App() {
             </>
           )}
         </main>
-        <Footer personal={personal} isNotFound={isNotFound} />
+        <Footer personal={personal} theme={theme} onSetTheme={setTheme} isNotFound={isNotFound} />
       </div>
     </AuditProvider>
   );

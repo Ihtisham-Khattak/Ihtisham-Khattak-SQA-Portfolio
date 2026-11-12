@@ -1,0 +1,45 @@
+.frame {
+  position: relative;
+  margin: 0;
+  isolation: isolate;
+}
+
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 12% 0 -14%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(60% 55% at 50% 75%, var(--accent-line), transparent 72%);
+  opacity: 0.3;
+  filter: blur(34px);
+}
+
+.frame-in {
+  padding: 0;
+}
+
+.frame-bar {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.frame-bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+
+.frame-body {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.frame figcaption {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}

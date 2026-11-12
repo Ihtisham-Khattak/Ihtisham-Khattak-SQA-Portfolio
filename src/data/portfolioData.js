@@ -260,70 +260,89 @@ export const portfolioData = {
     },
   ],
 
-  // Test-case results. Interim content restored from the original site;
-  // replace with the final project write-ups. Field mapping for the report:
-  //   description = what was tested, details.problem = what broke,
-  //   details.approach = what was fixed, details.outcome = result.
+  // Projects. A project shows either a test-case story (details: problem / approach / outcome,
+  // plus impact) or plain facts (platform, tooling, approach, plus headline). description =
+  // what was tested; platform is "web" or "mobile".
   projects: [
     {
-      "id": "automation-testing-framework",
-      "title": "Automation Testing Framework",
-      "category": "Automation",
-      "domain": "Release regression",
-      "role": "Senior SQA Engineer",
-      "impact": "3 days → 4 hours",
-      "description": "Modular Cypress E2E framework that replaced multi-day manual regression.",
-      "techStack": [
-        "Cypress",
-        "JavaScript",
-        "GitHub Actions"
+      "id": "nexa",
+      "title": "Nexa",
+      "category": "Web automation",
+      "domain": "Web application",
+      "platform": "web",
+      "headline": { "label": "Tested with", "value": "Playwright MCP" },
+      "description": "Web application tested end to end with browser automation driven through the Playwright MCP, alongside other current testing tools.",
+      "techStack": ["Playwright MCP"],
+      "facts": [
+        { "icon": "platform", "label": "Platform", "text": "Web application" },
+        { "icon": "tooling", "label": "Tooling", "text": "Playwright MCP, alongside other current testing tools." },
       ],
-      "details": {
-        "problem": "Manual regression took 3 days per release.",
-        "approach": "Modular Cypress suite, page objects, and a CI job the release waits on.",
-        "outcome": "Runtime dropped to 4 hours. Coverage rose ~60%."
-      },
       "link": "",
       "private": true
     },
     {
-      "id": "cypress-ecommerce-suite",
-      "title": "Cypress E-Commerce Suite",
-      "category": "Automation",
-      "domain": "Commerce",
-      "role": "Author",
-      "impact": "Cart & checkout covered",
-      "description": "POM-based Cypress suite for critical commerce flows, with Allure reporting.",
-      "techStack": [
-        "Cypress",
-        "POM",
-        "Allure"
+      "id": "metodovicon",
+      "title": "Metodovicon",
+      "category": "Web automation",
+      "domain": "Web application",
+      "platform": "web",
+      "headline": { "label": "Tested with", "value": "Playwright MCP" },
+      "description": "Web application tested end to end with browser automation driven through the Playwright MCP, alongside other current testing tools.",
+      "techStack": ["Playwright MCP"],
+      "facts": [
+        { "icon": "platform", "label": "Platform", "text": "Web application" },
+        { "icon": "tooling", "label": "Tooling", "text": "Playwright MCP, alongside other current testing tools." },
       ],
-      "details": {
-        "problem": "Manual e-commerce checks were inconsistent and slow.",
-        "approach": "Page objects around cart and checkout, with Allure for failure evidence.",
-        "outcome": "Reliable regression on cart and checkout, with visible failure reports."
-      },
-      "link": "https://github.com/Ihtisham-Khattak/cypress_commerce"
+      "link": "",
+      "private": true
     },
     {
-      "id": "k6-api-testing",
-      "title": "k6 API Testing",
-      "category": "Performance",
-      "domain": "API load",
-      "role": "Author",
-      "impact": "Thresholds as gates",
-      "description": "Smoke, load, and stress suites that fail the build when latency or errors break.",
-      "techStack": [
-        "k6",
-        "JavaScript"
+      "id": "timer-platform",
+      "title": "Timer Platform",
+      "category": "Mobile automation",
+      "domain": "Mobile application",
+      "platform": "mobile",
+      "headline": { "label": "Tested with", "value": "Appium MCP" },
+      "description": "Mobile application tested through the Appium MCP, with Appium and Scrcpy.",
+      "techStack": ["Appium MCP", "Appium", "Scrcpy"],
+      "facts": [
+        { "icon": "platform", "label": "Platform", "text": "Mobile application" },
+        { "icon": "tooling", "label": "Tooling", "text": "Appium MCP, Scrcpy." },
       ],
-      "details": {
-        "problem": "APIs hid bottlenecks until production traffic arrived.",
-        "approach": "k6 profiles for smoke, load, and stress, with thresholds that fail CI.",
-        "outcome": "Load profiles with pass/fail thresholds, ready for CI reuse."
-      },
-      "link": "https://github.com/Ihtisham-Khattak/k6_testing"
+      "link": "",
+      "private": true
+    },
+    {
+      "id": "lern-app",
+      "title": "Lern App",
+      "category": "Mobile automation",
+      "domain": "Mobile application",
+      "platform": "mobile",
+      "headline": { "label": "Tested with", "value": "Appium MCP" },
+      "description": "Mobile application tested through the Appium MCP, with Appium and Scrcpy.",
+      "techStack": ["Appium MCP", "Appium", "Scrcpy"],
+      "facts": [
+        { "icon": "platform", "label": "Platform", "text": "Mobile application" },
+        { "icon": "tooling", "label": "Tooling", "text": "Appium MCP, Scrcpy." },
+      ],
+      "link": "",
+      "private": true
+    },
+    {
+      "id": "nextpak",
+      "title": "Nextpak",
+      "category": "Web automation",
+      "domain": "Web application",
+      "platform": "web",
+      "headline": { "label": "Tested with", "value": "Playwright MCP" },
+      "description": "Web application tested end to end with browser automation driven through the Playwright MCP, alongside other current testing tools.",
+      "techStack": ["Playwright MCP"],
+      "facts": [
+        { "icon": "platform", "label": "Platform", "text": "Web application" },
+        { "icon": "tooling", "label": "Tooling", "text": "Playwright MCP, alongside other current testing tools." },
+      ],
+      "link": "",
+      "private": true
     }
   ],
 

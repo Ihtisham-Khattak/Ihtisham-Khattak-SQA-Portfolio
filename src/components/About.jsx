@@ -1,52 +1,50 @@
-import Chapter from "./Chapter";
+import Chapter, { SecTitle } from "./Chapter";
+import Frame from "./Frame";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { MagnifierBug } from "./Illustrations";
 import { SkillIcon } from "./SkillIcon";
-import portrait480 from "../assets/portrait-480.webp";
-import portrait880 from "../assets/portrait-880.webp";
 import "./About.css";
 
-const About = ({ data }) => (
-  <Chapter id="about" labelledBy="about-title">
-    <div className="about-grid">
-      <Reveal className="about-copy">
-        <h2 id="about-title" className="section-title">
-          {data.title}
-        </h2>
-        <p className="about-body lead">{data.body}</p>
+// Title split into a white lead and a tinted tail, at its natural break.
+const splitAt = (text, word) => {
+  const i = text.indexOf(word);
+  return i > 0 ? [text.slice(0, i).trim(), text.slice(i)] : [text, ""];
+};
+
+const About = ({ data }) => {
+  const [lead, tail] = splitAt(data.title, "your users");
+  return (
+    <Chapter id="about" labelledBy="about-title">
+      <Reveal className="sec-head has-aside">
+        <SecTitle id="about-title" lead={lead} tail={tail} />
+        <p className="sec-aside about-body">{data.body}</p>
       </Reveal>
 
-      <Reveal className="about-art" delay={0.1}>
-        <figure className="portrait">
-          <img
-            src={portrait880}
-            srcSet={`${portrait480} 480w, ${portrait880} 880w`}
-            sizes="(min-width: 1024px) 26rem, 80vw"
-            width="880"
-            height="1167"
-            alt={data.portraitAlt}
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-        <div className="lens" aria-hidden="true">
-          <MagnifierBug />
-        </div>
-      </Reveal>
-    </div>
+      <div className="about-grid">
+        <RevealGroup as="ul" className="rows">
+          {data.values.map((value) => (
+            <RevealItem as="li" key={value.title} className="row">
+              <span className="icon-circle">
+                <SkillIcon name={value.icon} size={19} />
+              </span>
+              <div>
+                <h3>{value.title}</h3>
+                <p>{value.text}</p>
+              </div>
+            </RevealItem>
+          ))}
+        </RevealGroup>
 
-    <RevealGroup as="ul" className="values">
-      {data.values.map((value) => (
-        <RevealItem as="li" key={value.title} className="value">
-          <span className="value-icon">
-            <SkillIcon name={value.icon} size={20} />
-          </span>
-          <h3>{value.title}</h3>
-          <p>{value.text}</p>
-        </RevealItem>
-      ))}
-    </RevealGroup>
-  </Chapter>
-);
+        <Reveal delay={0.08}>
+          <Frame className="about-frame">
+            <div className="about-art" aria-hidden="true">
+              <MagnifierBug />
+            </div>
+          </Frame>
+        </Reveal>
+      </div>
+    </Chapter>
+  );
+};
 
 export default About;

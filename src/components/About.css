@@ -1,116 +1,50 @@
+.about-body {
+  max-width: 28rem;
+  font-size: 0.98rem;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 3rem;
+  gap: 2.5rem 4rem;
   align-items: center;
 }
 
-.about-body {
-  margin-top: 1.5rem;
-}
-
-.about-art {
-  position: relative;
-  max-width: 26rem;
-  width: 100%;
-  justify-self: center;
-  margin-bottom: 1.5rem;
-}
-
-/* Portrait: a plate in the report, no crop (image is 3:4) */
-.portrait {
-  margin: 0;
-  overflow: hidden;
-  aspect-ratio: 3 / 4;
-  background: var(--bg-subtle);
-  border: 1px solid var(--text);
-  border-radius: var(--radius-card);
-  box-shadow: 8px 8px 0 -1px var(--accent-line);
-}
-
-.portrait img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-}
-
-/* Magnifier illustration rides the corner like an inspection badge */
-.lens {
-  position: absolute;
-  left: -1rem;
-  bottom: -1.5rem;
-  width: clamp(8rem, 42%, 11rem);
-  padding: 0.5rem;
-  background: var(--bg-elevated);
-  border: 1px solid var(--text);
-  border-radius: var(--radius-card);
-}
-
-.lens .il-mono {
-  display: none;
-}
-
-/* Three working principles, ruled columns instead of boxes */
-.values {
+.rows {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  margin-top: clamp(3rem, 6vw, 4.5rem);
-  border-top: 1px solid var(--text);
+  gap: 2rem;
 }
 
-.value {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--border);
+.row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 0 1.1rem;
+  align-items: start;
 }
 
-.value-icon {
-  display: inline-grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  margin-bottom: 1rem;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-line);
-  border-radius: 6px;
+.row h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
 }
 
-.value h3 {
-  margin-bottom: 0.45rem;
-}
-
-.value p {
-  font-size: 0.97rem;
-  line-height: 1.6;
+.row p {
+  font-size: 0.98rem;
+  line-height: 1.65;
   color: var(--text-muted);
   max-width: 34ch;
 }
 
-@media (min-width: 768px) {
-  .values {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .value {
-    padding: 1.75rem 1.5rem 1.75rem 0;
-    border-bottom: none;
-  }
-
-  .value + .value {
-    padding-left: 1.5rem;
-    border-left: 1px solid var(--border);
-  }
+.about-art {
+  width: min(22rem, 100%);
+  margin: 0 auto;
 }
 
-@media (min-width: 1024px) {
-  .about-grid {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 4rem;
-  }
+.about-art .il-mono {
+  display: none;
+}
 
-  .about-art {
-    justify-self: end;
+@media (min-width: 900px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   }
 }

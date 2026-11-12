@@ -62,67 +62,71 @@ const Contact = ({ contactInfo }) => {
 
   return (
     <Chapter id="contact" labelledBy="contact-title" className="chapter-contact">
-      <Reveal className="signoff">
-        <h2 id="contact-title" className="contact-title">
-          Let&apos;s build something <em>reliable</em> together.
-        </h2>
+      <Reveal className="bezel">
+        <div className="bezel-in closing">
+          <div className="closing-copy">
+            <h2 id="contact-title" className="closing-title">
+              Let&apos;s build something <span className="tail">reliable together.</span>
+            </h2>
 
-        <button type="button" className="contact-email" onClick={onCopy}>
-          <span>{contactInfo.email}</span>
-          <span className="contact-copy" aria-hidden="true">
-            {status === "copied" ? (
-              <Check size={18} strokeWidth={2} />
-            ) : (
-              <Copy size={18} strokeWidth={1.75} />
-            )}
-          </span>
-          <span className="sr-only">Copy email address to clipboard</span>
-        </button>
+            <button type="button" className="contact-email" onClick={onCopy}>
+              <span>{contactInfo.email}</span>
+              <span className="contact-copy" aria-hidden="true">
+                {status === "copied" ? (
+                  <Check size={18} strokeWidth={2} />
+                ) : (
+                  <Copy size={18} strokeWidth={1.75} />
+                )}
+              </span>
+              <span className="sr-only">Copy email address to clipboard</span>
+            </button>
 
-        <div className="contact-toast" role="status" aria-live="polite">
-          <AnimatePresence>
-            {status && (
-              <motion.span
-                key={status}
-                className={`toast ${status === "failed" ? "is-error" : ""}`}
-                initial={reducedMotion ? false : { opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reducedMotion ? undefined : { opacity: 0, y: -4 }}
-                transition={{ duration: 0.25 }}
-              >
-                {status === "copied" ? "✓ Copied" : "Couldn't copy — select the address manually"}
-              </motion.span>
-            )}
-          </AnimatePresence>
+            <div className="contact-toast" role="status" aria-live="polite">
+              <AnimatePresence>
+                {status && (
+                  <motion.span
+                    key={status}
+                    className={`toast ${status === "failed" ? "is-error" : ""}`}
+                    initial={reducedMotion ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reducedMotion ? undefined : { opacity: 0, y: -4 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    {status === "copied" ? "✓ Copied" : "Couldn't copy — select the address manually"}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <RevealGroup as="dl" className="sign-block">
+            {rows.map(({ label, value, href, external }) => (
+              <RevealItem key={label} className="sign-row">
+                <dt>{label}</dt>
+                <dd>
+                  {href ? (
+                    <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                      {value}
+                      <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
+                    </a>
+                  ) : (
+                    value
+                  )}
+                </dd>
+              </RevealItem>
+            ))}
+            <RevealItem className="sign-row">
+              <dt>Resume</dt>
+              <dd>
+                <a href={resumePDF} download="Ihtisham_Khattak_Resume.pdf">
+                  Download PDF
+                  <Download size={16} strokeWidth={1.75} aria-hidden="true" />
+                </a>
+              </dd>
+            </RevealItem>
+          </RevealGroup>
         </div>
       </Reveal>
-
-      <RevealGroup as="dl" className="sign-block">
-        {rows.map(({ label, value, href, external }) => (
-          <RevealItem key={label} className="sign-row">
-            <dt>{label}</dt>
-            <dd>
-              {href ? (
-                <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
-                  {value}
-                  <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
-                </a>
-              ) : (
-                value
-              )}
-            </dd>
-          </RevealItem>
-        ))}
-        <RevealItem className="sign-row">
-          <dt>Resume</dt>
-          <dd>
-            <a href={resumePDF} download="Ihtisham_Khattak_Resume.pdf">
-              Download PDF
-              <Download size={16} strokeWidth={1.75} aria-hidden="true" />
-            </a>
-          </dd>
-        </RevealItem>
-      </RevealGroup>
     </Chapter>
   );
 };

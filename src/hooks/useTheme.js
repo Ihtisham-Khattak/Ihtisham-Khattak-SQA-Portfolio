@@ -27,17 +27,15 @@ export function useTheme() {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      try {
-        localStorage.setItem(STORAGE_KEY, next);
-      } catch {
-        /* storage unavailable: theme still applies for this visit */
-      }
-      return next;
-    });
+  const chooseTheme = useCallback((next) => {
+    if (next !== "dark" && next !== "light") return;
+    setTheme(next);
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      /* storage unavailable: theme still applies for this visit */
+    }
   }, []);
 
-  return { theme, toggleTheme, isDark: theme === "dark" };
+  return { theme, setTheme: chooseTheme, isDark: theme === "dark" };
 }

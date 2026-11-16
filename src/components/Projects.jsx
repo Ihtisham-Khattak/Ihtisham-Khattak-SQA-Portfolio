@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Compass, Globe, Lock, Smartphone, Wrench, X } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Compass, Globe, Smartphone, Wrench, X } from "lucide-react";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import Chapter, { SecTitle } from "./Chapter";
 import { Reveal } from "./Reveal";
@@ -12,7 +12,6 @@ const FACT_ICON = { tooling: Wrench, approach: Compass };
 // Each project reads as a test case: what was tested, what broke, what was fixed, the
 // result. Every line is the project's own content; nothing is added here.
 function Case({ project, index, total }) {
-  const hasLink = Boolean(project.link) && !project.private;
   const headline = project.headline ?? { label: "Impact", value: project.impact };
   const PlatformIcon = project.platform === "mobile" ? Smartphone : Globe;
   return (

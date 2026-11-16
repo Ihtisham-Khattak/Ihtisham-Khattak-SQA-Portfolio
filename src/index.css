@@ -1,34 +1,36 @@
-/* Palette: green, white, black. Dark is the design's home ground (black, white text,
-   green accent); light is its paper counterpart. Fonts: Space Grotesk (headings),
-   Inter (body), JetBrains Mono (labels). */
+/* Brand palette (three colors): Abyss Green #00211E, Pure White #FFFFFF, Electric Lime #D5FB09.
+   Every surface and text tint below is a mix of those three. Dark is the home ground (Abyss);
+   light is its counterpart (White). Lime is a fill and a dark-ground text color only: it is
+   1.19:1 on white, so on light it never carries text. Fonts: Space Grotesk, Inter, JetBrains Mono. */
 :root {
-  --bg: #ffffff;
-  --bg-elevated: #f5f7f6;
-  --bg-subtle: #edf1ef;
-  --border: rgba(10, 13, 11, 0.1);
-  --border-strong: rgba(10, 13, 11, 0.17);
-  --text: #0a0d0b;
-  --text-muted: #4a534f;
-  --text-faint: #626b67;
+  --bg: #FFFFFF;
+  --bg-elevated: #F5F6F6;
+  --bg-subtle: #EBEDED;
+  --border: rgba(0, 33, 30, 0.12);
+  --border-strong: rgba(0, 33, 30, 0.2);
+  --text: #00211E;
+  --text-muted: #425B58;
+  --text-faint: #4D6462;
 
-  --accent: #06693a;
-  --accent-hover: #04552f;
-  --accent-text: #078046;
-  --accent-soft: rgba(6, 105, 58, 0.1);
-  --accent-line: rgba(6, 105, 58, 0.4);
-  --on-accent: #ffffff;
+  --accent: #D5FB09;
+  --accent-hover: #BBE10C;
+  --accent-text: #00211E;
+  --accent-soft: rgba(213, 251, 9, 0.38);
+  --accent-line: rgba(0, 33, 30, 0.3);
+  --on-accent: #00211E;
 
-  --danger: #b53424;
+  /* functional only (failed checks, the 404): the one color outside the brand palette */
+  --danger: #B53424;
   --danger-soft: rgba(181, 52, 36, 0.1);
 
-  --card-bg: #f3f6f4;
-  --card-tint: rgba(6, 105, 58, 0.07);
-  --bezel-bg: #ffffff;
-  --nav-bg: rgba(255, 255, 255, 0.72);
-  --glow: rgba(6, 105, 58, 0.1);
-  --dot: rgba(10, 13, 11, 0.08);
-  --shadow: rgba(10, 13, 11, 0.14);
-  --shadow-tint: rgba(10, 13, 11, 0.14);
+  --card-bg: #F6F7F7;
+  --card-tint: rgba(213, 251, 9, 0.18);
+  --bezel-bg: #FFFFFF;
+  --nav-bg: rgba(255, 255, 255, 0.78);
+  --glow: rgba(213, 251, 9, 0.3);
+  --dot: rgba(0, 33, 30, 0.1);
+  --shadow: rgba(0, 33, 30, 0.16);
+  --shadow-tint: rgba(0, 33, 30, 0.16);
 
   --font-heading: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
@@ -51,52 +53,53 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #030504;
-  --bg-elevated: #0c0f0e;
-  --bg-subtle: #131816;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.17);
-  --text: #f4f7f5;
-  --text-muted: #a3ada8;
-  --text-faint: #88938e;
+  --bg: #00211E;
+  --bg-elevated: #0D2C29;
+  --bg-subtle: #173532;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --text: #FFFFFF;
+  --text-muted: #BDC5C4;
+  --text-faint: #99A6A5;
 
-  --accent: #34d17f;
-  --accent-hover: #6ee8a3;
-  --accent-text: #8ee9b4;
-  --accent-soft: rgba(52, 209, 127, 0.13);
-  --accent-line: rgba(52, 209, 127, 0.45);
-  --on-accent: #03120a;
+  --accent: #D5FB09;
+  --accent-hover: #E0FC46;
+  --accent-text: #D5FB09;
+  --accent-soft: rgba(213, 251, 9, 0.12);
+  --accent-line: rgba(213, 251, 9, 0.45);
+  --on-accent: #00211E;
 
-  --danger: #f0705f;
-  --danger-soft: rgba(240, 112, 95, 0.14);
+  --danger: #FF8A7A;
+  --danger-soft: rgba(255, 138, 122, 0.14);
 
-  --card-bg: #0d1110;
-  --card-tint: rgba(52, 209, 127, 0.09);
-  --bezel-bg: #060908;
-  --nav-bg: rgba(14, 18, 16, 0.7);
-  --glow: rgba(52, 209, 127, 0.1);
-  --dot: rgba(255, 255, 255, 0.08);
-  --shadow: rgba(0, 0, 0, 0.6);
-  --shadow-tint: rgba(0, 0, 0, 0.6);
+  --card-bg: #0A2A27;
+  --card-tint: rgba(213, 251, 9, 0.07);
+  --bezel-bg: #001A17;
+  --nav-bg: rgba(0, 33, 30, 0.72);
+  --glow: rgba(213, 251, 9, 0.08);
+  --dot: rgba(255, 255, 255, 0.09);
+  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow-tint: rgba(0, 0, 0, 0.5);
 
   color-scheme: dark;
 }
 
 /* Surfaces that stay dark in either theme (the terminal window) */
 .ground-ink {
-  --bg: #030504;
-  --bg-elevated: #0c0f0e;
-  --bg-subtle: #131816;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.17);
-  --text: #f4f7f5;
-  --text-muted: #a3ada8;
-  --text-faint: #88938e;
-  --accent: #34d17f;
-  --accent-soft: rgba(52, 209, 127, 0.13);
-  --accent-line: rgba(52, 209, 127, 0.45);
-  --on-accent: #03120a;
-  --shadow-tint: rgba(0, 0, 0, 0.6);
+  --bg: #00211E;
+  --bg-elevated: #0D2C29;
+  --bg-subtle: #173532;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --text: #FFFFFF;
+  --text-muted: #BDC5C4;
+  --text-faint: #99A6A5;
+  --accent: #D5FB09;
+  --accent-text: #D5FB09;
+  --accent-soft: rgba(213, 251, 9, 0.12);
+  --accent-line: rgba(213, 251, 9, 0.45);
+  --on-accent: #00211E;
+  --shadow-tint: rgba(0, 0, 0, 0.5);
   color: var(--text);
 }
 
@@ -233,6 +236,33 @@ h3 {
 .sec-title .tail {
   display: block;
   color: var(--accent-text);
+}
+
+.sec-title .tail {
+  width: fit-content;
+}
+
+:root:not([data-theme="dark"]) .sec-title .tail,
+:root:not([data-theme="dark"]) .hero-name .tail,
+:root:not([data-theme="dark"]) .closing-title .tail {
+  color: var(--text);
+  background: linear-gradient(transparent 60%, var(--accent) 60% 94%, transparent 94%);
+}
+
+:root:not([data-theme="dark"]) .pill-dot,
+:root:not([data-theme="dark"]) .status-dot {
+  box-shadow: 0 0 0 1.5px #00211E;
+}
+
+/* Key phrases: heavier, with a thick continuous accent underline (lime on dark, lime on white) */
+.mark {
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.2em;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.16em;
 }
 
 .sec-aside {

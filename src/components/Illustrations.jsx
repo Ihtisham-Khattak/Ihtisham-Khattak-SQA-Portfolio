@@ -4,46 +4,6 @@ import "./Illustrations.css";
 // Line-art blueprint illustrations. Colors come from CSS variables,
 // so they follow the light/dark theme with no extra work.
 
-export function MagnifierBug() {
-  return (
-    <svg
-      className="illustration"
-      viewBox="0 0 360 300"
-      role="img"
-      aria-label="A magnifying glass examining a bug"
-    >
-      {/* blueprint frame + crosshair */}
-      <path className="il-faint" d="M18 44V18h26M342 44V18h-26M18 256v26h26M342 256v26h-26" />
-      <path className="il-grid" d="M180 26v248M26 150h308" />
-
-      {/* faint bug outside the lens, for scale */}
-      <g className="il-faint" opacity="0.5" transform="translate(40 190) scale(0.42)">
-        <ellipse cx="60" cy="70" rx="28" ry="38" />
-        <circle cx="60" cy="24" r="13" />
-      </g>
-
-      {/* the bug, magnified inside the lens */}
-      <g className="il-danger" transform="translate(110 70)">
-        <ellipse cx="60" cy="76" rx="30" ry="42" />
-        <path d="M60 36v82" />
-        <circle cx="60" cy="24" r="14" />
-        <path d="M52 12 42 -2M68 12 78 -2" />
-        <path d="M31 62 8 52M31 80H4M33 98 12 112M89 62l23-10M91 80h26M87 98l21 14" />
-        <circle className="il-dot-danger" cx="48" cy="64" r="2.5" />
-        <circle className="il-dot-danger" cx="72" cy="64" r="2.5" />
-      </g>
-
-      {/* lens + handle */}
-      <circle className="il-lens" cx="170" cy="142" r="96" />
-      <circle className="il-faint" cx="170" cy="142" r="84" strokeDasharray="2 6" />
-      <path className="il-accent" d="M104 112a72 72 0 0 1 44-40" strokeWidth="3" />
-      <path className="il-glare" d="M238 210l58 58" />
-
-      <text className="il-mono" x="58" y="278">defect.found</text>
-    </svg>
-  );
-}
-
 const NODES = [
   { title: "Commit", sub: "git push" },
   { title: "Build", sub: "Docker" },

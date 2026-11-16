@@ -23,7 +23,7 @@
 
 .il-accent {
   fill: none;
-  stroke: var(--accent);
+  stroke: var(--accent-text);
 }
 
 .il-danger {
@@ -55,7 +55,7 @@
 
 .il-node-accent {
   fill: var(--accent-soft);
-  stroke: var(--accent);
+  stroke: var(--accent-text);
 }
 
 .il-bar {
@@ -64,13 +64,13 @@
 }
 
 .il-bar-accent {
-  fill: var(--accent);
+  fill: var(--accent-text);
   opacity: 0.55;
 }
 
 .il-badge-bg {
   fill: var(--bg);
-  stroke: var(--accent);
+  stroke: var(--accent-text);
 }
 
 .il-title {
@@ -103,7 +103,7 @@
 }
 
 .il-travel {
-  fill: var(--accent);
+  fill: var(--accent-text);
   stroke: var(--bg);
   stroke-width: 2;
 }

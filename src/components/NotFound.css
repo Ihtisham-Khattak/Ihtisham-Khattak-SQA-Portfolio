@@ -133,7 +133,7 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .not-found-recover small {
@@ -152,12 +152,12 @@
 }
 
 .not-found-recover a:hover {
-  color: var(--accent);
+  color: var(--accent-text);
   background: var(--accent-soft);
 }
 
 .not-found-recover a:hover svg {
-  color: var(--accent);
+  color: var(--accent-text);
   transform: translate(2px, -2px);
 }
 

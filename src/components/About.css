@@ -1,50 +1,13 @@
+/* The section a recruiter reads first: bigger headline, skimmable paragraph, then the hunt */
+.about-title {
+  font-size: clamp(2.1rem, 2.6vw + 1rem, 3.15rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  max-width: none;
+}
+
 .about-body {
-  max-width: 28rem;
-  font-size: 0.98rem;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 2.5rem 4rem;
-  align-items: center;
-}
-
-.rows {
-  display: grid;
-  gap: 2rem;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr);
-  gap: 0 1.1rem;
-  align-items: start;
-}
-
-.row h3 {
-  margin-bottom: 0.4rem;
-  font-size: 1.2rem;
-}
-
-.row p {
-  font-size: 0.98rem;
-  line-height: 1.65;
-  color: var(--text-muted);
-  max-width: 34ch;
-}
-
-.about-art {
-  width: min(22rem, 100%);
-  margin: 0 auto;
-}
-
-.about-art .il-mono {
-  display: none;
-}
-
-@media (min-width: 900px) {
-  .about-grid {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  }
+  max-width: 30rem;
+  font-size: 1.02rem;
+  line-height: 1.7;
 }

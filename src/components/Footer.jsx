@@ -1,6 +1,7 @@
 import { ArrowUp, Moon, Sun } from "lucide-react";
 import { useAudit } from "../audit/AuditContext";
 import ikMark from "../assets/ik-mark.svg";
+import ikMarkInverse from "../assets/ik-mark-inverse.svg";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import "./Footer.css";
 
@@ -36,7 +37,8 @@ const Footer = ({ personal, theme, onSetTheme, isNotFound = false }) => {
       <div className="container">
         <div className="footer-top">
           <a href={isNotFound ? "/" : "#top"} className="footer-brand" onClick={toTop}>
-            <img className="nav-logo" src={ikMark} alt="" width="32" height="32" />
+            <img className="nav-logo logo-on-light" src={ikMark} alt="" width="32" height="32" />
+            <img className="nav-logo logo-on-dark" src={ikMarkInverse} alt="" width="32" height="32" />
             {personal.name}
           </a>
 

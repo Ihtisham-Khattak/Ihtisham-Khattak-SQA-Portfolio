@@ -18,7 +18,8 @@ export const portfolioData = {
     status: "Available for opportunities",
     name: "Ihtisham Khattak",
     subheadline: [
-      "Senior QA Engineer crafting ",
+      { strong: "Senior QA Engineer" },
+      " crafting ",
       { strong: "reliable software" },
       " through test automation, API testing, and ",
       { strong: "AI/LLM quality assurance" },
@@ -35,6 +36,13 @@ export const portfolioData = {
   ],
 
   about: {
+    // UI only: phrases emphasised inside `body` (the text itself is unchanged)
+    highlights: [
+      "manual and automation testing",
+      "test strategies",
+      "automation that scales",
+      "AI chatbot and LLM testing",
+    ],
     portraitAlt: "Portrait of Ihtisham Khattak in a black suit and tie",
     title: "I find the bugs before your users do.",
     body:

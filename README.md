@@ -1,34 +1,28 @@
 # Ihtisham Khattak, Senior QA Engineer Portfolio
 
-A single-page portfolio set as a **printed test report**. White paper, black ink, one green
-PASS stamp. Every section is a numbered test case (TC-00 to TC-11) that the page **verifies
-for real, in the visitor's browser, as they scroll**.
+A single-page portfolio in Abyss Green, Pure White and Electric Lime. The design language follows a
+product-marketing pattern: a floating glass nav, a centered tag pill and two-tone headline per
+section, bezel cards, framed windows with a glow, and a footer theme switcher.
 
-## The signature move: the page audits itself
+## Highlights
 
-A thin run line sweeps down the viewport. As each chapter's header crosses it, the chapter's
-stamp goes UNVERIFIED, then RUNNING, then PASSED n/n (or FAILED, honestly). The checks are
-measured against the live DOM, never assumed:
-
-- landmark is named, headings do not skip levels
-- images and SVGs have text alternatives
-- links are named, external links carry `rel=noopener`
-- computed text contrast against the real background (WCAG AA)
-- tap targets are at least 24px (WCAG 2.2)
-- no horizontal overflow
-- document language, title, pinch zoom, exactly one `h1`, main landmark, skip link
-
-Click a stamp to see its check list. The **Result** chapter prints the totals plus measured LCP
-and CLS (only when the browser reports them), uncaught runtime errors, and signs the report. It says
-plainly that automated checks are not a full audit. Reduced motion skips the sweep and shows
-every stamp in its final measured state.
+- **Bug hunt (About).** An interactive demo screen with three planted bugs. A magnifier lens follows the
+  cursor or finger and shows an X-ray of the screen; each of the three working principles owns one bug.
+  Keyboard users reveal the same bugs from the principle buttons. Finding all three prints a release-gate message.
+- **The page audits itself.** Each section's stamp (Unverified, Running, Passed n/n) reports real checks run
+  in the visitor's browser: alt text, heading order, link names, computed contrast, tap-target size, overflow,
+  document language, title, zoom, single `h1`, landmarks and a skip link. The Run summary section prints the
+  totals plus measured LCP and CLS (when the browser reports them) and says plainly that this is not a full audit.
+- **Projects carousel.** Native scroll-snap (swipe, wheel, arrow keys) with previous/next buttons and a live
+  counter. No autoplay.
+- **Brand kit** at `/brand/`: logo variants, colors with computed contrast, typography, favicon set, downloads.
 
 ## Stack
 
 - React 19 + Vite 7; Framer Motion for the menu sheet, toast and magnetic button only
 - Scroll reveals are CSS + one shared IntersectionObserver (`Reveal`)
-- Vanilla CSS with tokens. Palette is green / white / black, two grounds (paper and ink)
-- Fonts: Space Grotesk, Inter, JetBrains Mono
+- Vanilla CSS with design tokens; dark and light themes (`data-theme`)
+- Fonts: Space Grotesk (headings), Inter (body), JetBrains Mono (labels, figures)
 - Lucide for concept icons, `react-icons` for tool logos
 
 ## Getting started
@@ -49,52 +43,48 @@ npm run dev
 
 All copy lives in [`src/data/portfolioData.js`](src/data/portfolioData.js); components never hold content.
 
-| Key | Chapter |
+| Key | Section |
 |-----|---------|
-| `personal`, `hero` | Title page, contact |
+| `personal`, `hero` | Hero, contact |
 | `stats` | Highlights |
-| `about` | About (copy, portrait alt text, three principles) |
-| `skills` | Skills ledger (each skill has an `icon` key) |
-| `experience` | Experience log |
-| `projects` | Projects, shown as test cases (see below) |
+| `about` | About: body, `highlights` (phrases underlined in the body), portrait alt text, the three principles |
+| `skills` | Skills grid (each skill has an `icon` key) |
+| `experience` | Experience cards |
+| `projects` | Projects carousel (see below) |
 | `aiTesting`, `process` | AI Testing, Process |
 | `testimonials` | Testimonials |
 | `credentials`, `initiative` | Credentials and the "Keep the Earth Green" banner (alt text) |
 
-**Projects** are a carousel of cards (swipe, scroll, arrow keys, or the buttons; no autoplay). A project
-shows one of two bodies:
+**Projects.** A project shows one of two bodies: a test-case story (`details.problem` / `approach` /
+`outcome`, with `impact` as the headline figure) or plain facts (`facts`: platform, tooling, approach, with a
+`headline`). Other fields: `description` (what was tested), `platform` (`web` or `mobile`, picks the icon),
+`techStack` (tags), `role` (optional). Add story fields to any project and its card switches to the
+test-case layout.
 
-- a test-case story: `details.problem` (broke), `details.approach` (fixed), `details.outcome` (result)
-  and `impact` as the headline figure, or
-- plain facts: `facts` (platform, tooling, approach) and `headline` (for example "Tested with / Playwright MCP").
+Key phrases are underlined with the shared `.mark` style (see `src/index.css`). Skills show a "seen in"
+company only when an experience tag names that skill. Skill icon keys map to icons in
+[`src/components/skillIcons.js`](src/components/skillIcons.js). Chapter order, ids and labels live in
+[`src/audit/chapters.js`](src/audit/chapters.js).
 
-Other fields: `description` (what was tested), `platform` (`web` or `mobile`, picks the icon), `techStack`
-(tags), `role` (optional), `link` (empty or `private: true` shows "Available on request"). Add the story
-fields to any project later and its card switches to the test-case layout.
+## Colors and brand
 
-Skills show a "seen in" company only when an experience tag names that skill (see `Skills.jsx`).
-Skill icon keys map to icons in [`src/components/skillIcons.js`](src/components/skillIcons.js).
+Three colors: **Abyss Green `#00211E`**, **Pure White `#FFFFFF`**, **Electric Lime `#D5FB09`**. Dark is the
+home ground (Abyss, white text, lime accent); light is white with Abyss text, where lime is a fill and an
+underline only (it is 1.19:1 on white, so it never carries text). Tokens live in
+[`src/index.css`](src/index.css). The full kit is at `/brand/` and in [`BRAND.md`](BRAND.md). One functional
+red exists for failed checks and the 404 page.
 
-Chapter order, ids and labels live in [`src/audit/chapters.js`](src/audit/chapters.js). Adding a
-chapter means adding it there and wrapping its content in `<Chapter id="...">`.
+## Images and icons
 
-## Colors
-
-Defined once in [`src/index.css`](src/index.css). `--paper-*` and `--ink-*` are the two grounds; a
-chapter picks one with `data-ground` (`base`, `subtle`, `alt`) and the theme toggle swaps which
-ground is the base. Every text and background pair is checked for WCAG AA by the page itself.
-`--danger` appears only for failed checks, the bug in the About illustration and the 404.
-
-## Images
-
-Optimized WebP copies live in `src/assets/`: `portrait-{480,880}.webp` and
-`banner-keep-earth-green-{1200,2400}.webp`. The resume is `Ihtisham_Khattak_SQA.pdf`.
+Optimized WebP copies in `src/assets/`: `portrait-{480,880}.webp`, `banner-keep-earth-green-{1200,2400}.webp`.
+The IK logo variants are `ik-mark.svg` (primary) and `ik-mark-inverse.svg`; the favicon set is in `public/`.
+The resume is `Ihtisham_Khattak_SQA.pdf`.
 
 ## Design record
 
-The brief, feeling curve, peak and fingerprint live in
-[`scrollcraft/builds/portfolio/BRIEF.md`](scrollcraft/builds/portfolio/BRIEF.md), with contact
-sheets for desktop, mobile, dark, and reduced motion beside it.
+The original brief and fingerprint are in [`scrollcraft/builds/portfolio/BRIEF.md`](scrollcraft/builds/portfolio/BRIEF.md).
+It describes the first (printed test report) direction; the current visual design supersedes it, and the
+self-audit idea carries over.
 
 ## Docker
 
@@ -102,13 +92,13 @@ sheets for desktop, mobile, dark, and reduced motion beside it.
 docker compose up --build
 ```
 
-App is served at `http://localhost:8080`. See [ARCHITECTURE.md](ARCHITECTURE.md) for structure.
+App is served at `http://localhost:8080`. See [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Accessibility
 
-- Skip-to-content link is the first tab stop; visible accent focus ring
+- Skip-to-content link is the first tab stop; visible focus ring
 - WCAG AA contrast, measured live by the page; zoom is never disabled
-- Theme follows system preference, toggle persists
-- `prefers-reduced-motion` removes the sweep, sticky print and non-essential animation
-- Mobile chapter sheet traps focus, closes on Escape and returns focus
+- Theme follows system preference; the footer switch persists the choice
+- `prefers-reduced-motion` removes the idle lens, the stamp sweep and non-essential animation
+- Mobile menu traps focus, closes on Escape and returns focus; the carousel and bug hunt are keyboard operable
 - Decorative SVGs are `aria-hidden`; informative ones are labelled

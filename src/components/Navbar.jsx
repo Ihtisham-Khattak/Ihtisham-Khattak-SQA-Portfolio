@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Download, Menu, X } from "lucide-react";
 import resumePDF from "../assets/Ihtisham_Khattak_SQA.pdf";
 import ikMark from "../assets/ik-mark.svg";
+import ikMarkInverse from "../assets/ik-mark-inverse.svg";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import "./Navbar.css";
 
@@ -77,7 +78,8 @@ export default function Navbar({ isNotFound = false }) {
       <header className="nav">
         <div className="nav-pill">
           <a href={isNotFound ? "/" : "#top"} className="nav-brand" onClick={closeMenu}>
-            <img className="nav-logo" src={ikMark} alt="" width="32" height="32" />
+            <img className="nav-logo logo-on-light" src={ikMark} alt="" width="32" height="32" />
+            <img className="nav-logo logo-on-dark" src={ikMarkInverse} alt="" width="32" height="32" />
             <span className="nav-name">Ihtisham Khattak</span>
           </a>
 

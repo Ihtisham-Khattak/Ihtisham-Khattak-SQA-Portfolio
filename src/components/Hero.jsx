@@ -30,7 +30,13 @@ const Hero = ({ data, personal, portraitAlt }) => {
 
           <RevealItem as="p" className="hero-sub">
             {data.subheadline.map((part, index) =>
-              typeof part === "string" ? part : <strong key={index}>{part.strong}</strong>
+              typeof part === "string" ? (
+                part
+              ) : (
+                <strong key={index} className="mark">
+                  {part.strong}
+                </strong>
+              )
             )}
           </RevealItem>
 
@@ -41,7 +47,7 @@ const Hero = ({ data, personal, portraitAlt }) => {
             </span>
             <span>
               <Briefcase size={16} strokeWidth={1.6} aria-hidden="true" />
-              {data.experience}
+              <span className="mark">{data.experience}</span>
             </span>
           </RevealItem>
 

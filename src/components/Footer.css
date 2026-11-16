@@ -137,7 +137,7 @@
 
 .back-to-top:hover {
   color: var(--accent-text);
-  border-color: var(--accent);
+  border-color: var(--accent-text);
   background: var(--accent-soft);
 }
 
